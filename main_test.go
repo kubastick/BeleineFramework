@@ -4,6 +4,20 @@ import (
 	"testing"
 )
 
+func TestButton(t *testing.T) {
+	button := MakeButton()
+	button.SetText("Click")
+	if button.render() != `<button type="button" class="btn btn-primary ">Click</button>` {t.Fail()}
+	button.SetSize(0)
+	if button.render() != `<button type="button" class="btn btn-primary btn-sm">Click</button>` {t.Fail()}
+	button.SetButtonType(1)
+	if button.render() != `<button type="button" class="btn btn-secondary btn-sm">Click</button>` {t.Fail()}
+	button.SetOutline(true)
+	if button.render() != `<button type="button" class="btn btn-outline-secondary btn-sm">Click</button>` {t.Fail()}
+	button.SetState(false)
+	if button.render() != `<button type="button" class="btn btn-outline-secondary btn-sm" disabled>Click</button>` {t.Fail()}
+}
+
 func TestLabel(t *testing.T) {
 	label := MakeLabel()
 	label.SetText("Hello world")
