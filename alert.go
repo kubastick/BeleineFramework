@@ -1,0 +1,73 @@
+package main
+
+import (
+	"strconv"
+	"fmt"
+)
+
+/*
+Alert types:
+	ALERT_SUCCES = 0
+	ALERT_IFNO = 1
+	ALERT_WARNING = 2
+	ALERT_DANGER = 3
+	ALERT_PRIMARY = 4
+	ALERT_SECONDARY = 5
+	ALERT_LIGHT = 6
+	ALERT_DARK = 7
+*/
+
+type Alert struct {
+	id string
+	strongText string
+	text string
+	alertType int
+}
+
+func MakeAlert() Alert {
+	return Alert{id:strconv.Itoa(getGlobalID())}
+}
+
+func (a *Alert) SetText(text string) {
+	a.text = text
+}
+
+func (a *Alert) SetStrongText(text string) {
+	a.strongText = text
+}
+
+func (a *Alert) SetAlertType(alertType int) {
+	a.alertType = alertType
+}
+
+func (a *Alert) render() string {
+	return fmt.Sprintf(`
+	<div class="%s">
+  		<strong>%s</strong> %s
+	</div>
+	`,getDivClassName(a.alertType),a.strongText,a.text)
+}
+
+func getDivClassName(num int) string {
+	switch num {
+	case 0:
+		return ".alert-success"
+	case 1:
+		return ".alert-info"
+	case 2:
+		return ".alert-warning"
+	case 3:
+		return ".alert-danger"
+	case 4:
+		return ".alert-primary"
+	case 5:
+		return ".alert-secondary"
+	case 6:
+		return ".alert-light"
+	case 7:
+		return ".alert-dark"
+	}
+	panic("illegal alert type number")
+}
+
+

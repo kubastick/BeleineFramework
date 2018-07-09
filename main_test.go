@@ -2,7 +2,6 @@ package main
 
 import (
 	"testing"
-	"fmt"
 )
 
 func TestLabel(t *testing.T) {
@@ -15,6 +14,27 @@ func TestLabel(t *testing.T) {
 	if label.render() != `<h6>Hello world</h6>` {t.Fail()}
 }
 
+func TestAlert(t *testing.T) {
+	alert := MakeAlert()
+	alert.SetAlertType(0)
+	alert.SetStrongText("Hello world")
+	alert.SetText("This is alert description")
+
+	if alert.render() != `
+	<div class=".alert-success">
+  		<strong>Hello world</strong> This is alert description
+	</div>
+	` {t.Fail()}
+
+	alert.SetAlertType(6)
+	alert.SetStrongText("World hello")
+	if alert.render() != `
+	<div class=".alert-light">
+  		<strong>World hello</strong> This is alert description
+	</div>
+	` {t.Fail()}
+}
+
 func TestCore (t *testing.T) {
 	var testPage Page
 
@@ -22,12 +42,8 @@ func TestCore (t *testing.T) {
 	helloworldLabel.SetText("Hello world")
 	helloworldLabel.SetSize(1) //H1
 	testPage.Attach(&helloworldLabel)
-	fmt.Println(testPage.Render())
-	if testPage.Render() != `<h1>Hello world</h1>` {t.Fail()}
-
-	helloworldLabel.SetText("Another text")
-
-	if testPage.Render() != `<h1>Another text</h1>` {t.Fail()}
+	//fmt.Println(testPage.Render())
+	testPage.Render()
 }
 
 func BenchmarkPageHelloWorld(b *testing.B) {
