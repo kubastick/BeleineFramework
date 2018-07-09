@@ -22,6 +22,7 @@ type Alert struct {
 	strongText string
 	text string
 	alertType int
+	//TODO closable bool
 }
 
 func MakeAlert() Alert {
