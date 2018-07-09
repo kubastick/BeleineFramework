@@ -2,6 +2,9 @@
 
 package main
 
+//variables
+var globalID int
+
 type component interface {
 	render() string
 }
@@ -17,4 +20,11 @@ func (p Page) Render() string{
 		result += a.render()
 	}
 	return result
+}
+
+///Get unique component ID
+func getGlobalID() int {
+	x := globalID
+	globalID++
+	return x
 }
