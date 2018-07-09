@@ -11,10 +11,10 @@ type Page struct {
 }
 
 func (p Page) Render() string{
-	/*
-	var result string
-	for _,a := range := p.components {
 
-	}\*/
-	//Later xd
+	var result string
+	for _,a := range p.components {
+		result += a.render()
+	}
+	return result
 }
