@@ -2,6 +2,6 @@
 
 package main
 
-func yo() {
-	
+type component interface {
+	render() string
 }
