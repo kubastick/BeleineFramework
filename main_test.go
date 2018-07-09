@@ -2,6 +2,7 @@ package main
 
 import (
 	"testing"
+	"fmt"
 )
 
 func TestLabel(t *testing.T) {
@@ -21,7 +22,7 @@ func TestCore (t *testing.T) {
 	helloworldLabel.SetText("Hello world")
 	helloworldLabel.SetSize(1) //H1
 	testPage.Attach(&helloworldLabel)
-
+	fmt.Println(testPage.Render())
 	if testPage.Render() != `<h1>Hello world</h1>` {t.Fail()}
 
 	helloworldLabel.SetText("Another text")
