@@ -24,6 +24,7 @@ var globalID int
 type component interface {
 	render() string
 	renderJS() string
+	GetID() string
 }
 
 type Page struct {
