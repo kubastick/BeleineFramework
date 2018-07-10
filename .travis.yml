@@ -3,5 +3,7 @@ language: go
 go:
   - "1.10.x"
 
-notifications:
-  slack: beleineframework:ZLzIXmqldnUOxaWjYDxFg3cu
+ notifications:
+  slack:
+    rooms:
+      - beleineframework:ZLzIXmqldnUOxaWjYDxFg3cu#general
