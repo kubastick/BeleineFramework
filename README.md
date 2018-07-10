@@ -1,5 +1,5 @@
 # Beleine Framework
-[![Build Status](https://travis-ci.com/kubastick/BeleineFramework.svg?token=bpH3SmbkspnyvKjSgrmq&branch=master)](https://travis-ci.com/kubastick/BeleineFramework)
+[![Build Status](https://travis-ci.com/kubastick/BeleineFramework.svg?token=bpH3SmbkspnyvKjSgrmq&branch=master)](https://travis-ci.com/kubastick/BeleineFramework)  
 Tried of html,css and javascript ?  
 Beleine Framework is the fastest way to build web applications in Go  
 It gives you high level api, and every component, that you will need for web development  
