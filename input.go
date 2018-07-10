@@ -58,7 +58,7 @@ func (i *Input) SetInputType(inputType string) {
 }
 
 //WIP
-func (i *Input) GetValue() {
+func (i *Input) GetValueJS() {
 	i.js += fmt.Sprintf("console.log(%s.value);", i.id)
 }
 
