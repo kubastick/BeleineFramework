@@ -29,6 +29,10 @@ func MakeAlert() Alert {
 	return Alert{id:strconv.Itoa(getGlobalID())}
 }
 
+func (a *Alert) GetAlertId() string {
+	return a.id
+}
+
 func (a *Alert) SetText(text string) {
 	a.text = text
 }
@@ -43,10 +47,10 @@ func (a *Alert) SetAlertType(alertType int) {
 
 func (a *Alert) render() string {
 	return fmt.Sprintf(`
-	<div class="%s">
+	<div id="%s" class="%s">
   		<strong>%s</strong> %s
 	</div>
-	`,getDivClassName(a.alertType),a.strongText,a.text)
+	`, a.id, getDivClassName(a.alertType),a.strongText,a.text)
 }
 
 func getDivClassName(num int) string {

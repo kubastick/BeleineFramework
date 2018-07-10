@@ -21,6 +21,9 @@ func MakeInput() Input {
 	return Input{id:strconv.Itoa(getGlobalID()), inputType:"text"}
 }
 
+func (i *Input) GetInputId() string {
+	return i.id
+}
 
 //TO DO
 //func (i *Input) SetText(text string) {
@@ -53,6 +56,6 @@ func (i *Input) SetInputType(inputType string) {
 }
 
 func (i *Input) render() string {
-	return fmt.Sprintf(`<input type="%s" class="form-control %s" placeholder="%s">`, i.inputType, i.size, i.hint)
+	return fmt.Sprintf(`<input id="%s" type="%s" class="form-control %s" placeholder="%s">`, i.id, i.inputType, i.size, i.hint)
 }
 

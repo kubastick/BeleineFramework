@@ -17,6 +17,10 @@ func MakeLabel() Label {
 	return Label{id:strconv.Itoa(getGlobalID())}
 }
 
+func (l *Label) GetLabelId() string {
+	return l.id
+}
+
 func (l *Label) SetText(text string) {
 	l.text = text
 }
@@ -32,8 +36,8 @@ func (l *Label) SetSize(size int) error {
 
 func (l *Label) render() string {
 	if l.size==0 {
-		return fmt.Sprintf(`<p>%s</p>`, l.text)
+		return fmt.Sprintf(`<p id="%s">%s</p>`,l.id,l.text)
 	} else {
-		return fmt.Sprintf(`<h%d>%s</h%d>`,l.size,l.text,l.size)
+		return fmt.Sprintf(`<h%d id="%s">%s</h%d>`,l.size,l.id,l.text,l.size)
 	}
 }
