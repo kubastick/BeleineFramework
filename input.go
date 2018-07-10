@@ -1,5 +1,7 @@
 package beleine
 
+//INPUT
+
 import (
 	"fmt"
 	"errors"
@@ -8,7 +10,7 @@ import (
 
 type Input struct {
 	id string
-	//text string
+	text string
 	hint string
 	size string
 	inputType string
@@ -25,10 +27,10 @@ func (i *Input) GetInputId() string {
 	return i.id
 }
 
-//TO DO
-//func (i *Input) SetText(text string) {
-//	i.text = text
-//}
+func (i *Input) SetTextJS(text string) string {
+	i.text = text
+	return fmt.Sprintf(`%s.value="%s"`,i.id,i.text)
+}
 
 func (i *Input) SetHint(hint string) {
 	i.hint = hint
@@ -53,6 +55,11 @@ func (i *Input) SetSize(size int) error {
 
 func (i *Input) SetInputType(inputType string) {
 	i.inputType = inputType
+}
+
+//WIP
+func (i *Input) GetValue() {
+	i.js += fmt.Sprintf("console.log(%s.value);", i.id)
 }
 
 func (i *Input) render() string {

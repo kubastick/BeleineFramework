@@ -1,5 +1,7 @@
 package beleine
 
+//LABEL
+
 import (
 	"fmt"
 	"errors"
