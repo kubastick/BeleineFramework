@@ -22,6 +22,14 @@ func (b *Badge) SetText(text string) {
 	b.text = text
 }
 
+func (b *Badge) SetTextJS(text string) string {
+	return fmt.Sprintf(`%s.innerHTML="%s"`,b.id,text)
+}
+
+func (b *Badge) SetOnClickListener(listener string) {
+	b.js += fmt.Sprintf("%s.onclick = function(){%s}",b.id,listener)
+}
+
 func (b *Badge) render() string {
 	return fmt.Sprintf(`<span class="badge badge-secondary">%s</span>`,b.text)
 }
