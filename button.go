@@ -34,6 +34,10 @@ func MakeButton() Button {
 	return Button{id:strconv.Itoa(getGlobalID()),btnType:"-primary",state:true}
 }
 
+func (b *Button) GetBtnId() string {
+	return b.id
+}
+
 func (b *Button) SetText(text string) {
 	b.text = text
 }
@@ -98,9 +102,9 @@ func (b *Button) render() string {
 
 
 	if b.state {
-		return fmt.Sprintf(`<button type="button" class="btn btn%s%s %s">%s</button>`, b.outline, b.btnType, b.size, b.text)
+		return fmt.Sprintf(`<button id="%s" type="button" class="btn btn%s%s %s">%s</button>`, b.id, b.outline, b.btnType, b.size, b.text)
 	} else {
-		return fmt.Sprintf(`<button type="button" class="btn btn%s%s %s" disabled>%s</button>`, b.outline, b.btnType, b.size, b.text)
+		return fmt.Sprintf(`<button id="%s" type="button" class="btn btn%s%s %s" disabled>%s</button>`, b.id, b.outline, b.btnType, b.size, b.text)
 	}
 
 }

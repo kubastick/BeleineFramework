@@ -2,40 +2,41 @@ package main
 
 import (
 	"testing"
+	"fmt"
 )
 
 func TestInput(t *testing.T) {
 	input := MakeInput()
 	input.SetHint("Username")
-	if input.render() != `<input type="text" class="form-control " placeholder="Username">` {t.Fail()}
+	if input.render() != fmt.Sprintf(`<input id="%s" type="text" class="form-control " placeholder="Username">`,input.GetInputId()) {t.Fail()}
 	input.SetSize(2)
-	if input.render() != `<input type="text" class="form-control form-control-lg" placeholder="Username">` {t.Fail()}
+	if input.render() != fmt.Sprintf(`<input id="%s" type="text" class="form-control form-control-lg" placeholder="Username">`,input.GetInputId()) {t.Fail()}
 	input.SetInputType("password")
-	if input.render() != `<input type="password" class="form-control form-control-lg" placeholder="Username">` {t.Fail()}
+	if input.render() != fmt.Sprintf(`<input id="%s" type="password" class="form-control form-control-lg" placeholder="Username">`,input.GetInputId()) {t.Fail()}
 }
 
 func TestButton(t *testing.T) {
 	button := MakeButton()
 	button.SetText("Click")
-	if button.render() != `<button type="button" class="btn btn-primary ">Click</button>` {t.Fail()}
+	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-primary ">Click</button>`,button.GetBtnId()) {t.Fail()}
 	button.SetSize(0)
-	if button.render() != `<button type="button" class="btn btn-primary btn-sm">Click</button>` {t.Fail()}
+	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-primary btn-sm">Click</button>`,button.GetBtnId()) {t.Fail()}
 	button.SetButtonType(1)
-	if button.render() != `<button type="button" class="btn btn-secondary btn-sm">Click</button>` {t.Fail()}
+	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-secondary btn-sm">Click</button>`,button.GetBtnId()) {t.Fail()}
 	button.SetOutline(true)
-	if button.render() != `<button type="button" class="btn btn-outline-secondary btn-sm">Click</button>` {t.Fail()}
+	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-outline-secondary btn-sm">Click</button>`,button.GetBtnId()) {t.Fail()}
 	button.SetState(false)
-	if button.render() != `<button type="button" class="btn btn-outline-secondary btn-sm" disabled>Click</button>` {t.Fail()}
+	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-outline-secondary btn-sm" disabled>Click</button>`,button.GetBtnId()) {t.Fail()}
 }
 
 func TestLabel(t *testing.T) {
 	label := MakeLabel()
 	label.SetText("Hello world")
-	if label.render() != `<p>Hello world</p>` {t.Fail()}
+	if label.render() != fmt.Sprintf(`<p id="%s">Hello world</p>`,label.GetLabelId()) {t.Fail()}
 	label.SetSize(1)
-	if label.render() != `<h1>Hello world</h1>` {t.Fail()}
+	if label.render() != fmt.Sprintf(`<h1 id="%s">Hello world</h1>`,label.GetLabelId()) {t.Fail()}
 	label.SetSize(6)
-	if label.render() != `<h6>Hello world</h6>` {t.Fail()}
+	if label.render() != fmt.Sprintf(`<h6 id="%s">Hello world</h6>`,label.GetLabelId()) {t.Fail()}
 }
 
 func TestAlert(t *testing.T) {
@@ -44,19 +45,19 @@ func TestAlert(t *testing.T) {
 	alert.SetStrongText("Hello world")
 	alert.SetText("This is alert description")
 
-	if alert.render() != `
-	<div class=".alert-success">
+	if alert.render() != fmt.Sprintf(`
+	<div id="%s" class=".alert-success">
   		<strong>Hello world</strong> This is alert description
 	</div>
-	` {t.Fail()}
+	`,alert.GetAlertId()) {t.Fail()}
 
 	alert.SetAlertType(6)
 	alert.SetStrongText("World hello")
-	if alert.render() != `
-	<div class=".alert-light">
+	if alert.render() != fmt.Sprintf(`
+	<div id="%s" class=".alert-light">
   		<strong>World hello</strong> This is alert description
 	</div>
-	` {t.Fail()}
+	`,alert.GetAlertId()) {t.Fail()}
 }
 
 func TestCore (t *testing.T) {
