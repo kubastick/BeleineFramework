@@ -31,7 +31,7 @@ func MakeAlert() Alert {
 	return Alert{id:getGlobalID()}
 }
 
-func (a *Alert) GetAlertId() string {
+func (a *Alert) GetID() string {
 	return a.id
 }
 
@@ -45,6 +45,10 @@ func (a *Alert) SetStrongText(text string) {
 
 func (a *Alert) SetAlertType(alertType int) {
 	a.alertType = alertType
+}
+
+func (a *Alert) SetOnClickListener(listener string)  {
+	a.js += fmt.Sprintf("%s.onclick = function(){%s}",a.id,listener)
 }
 
 func (a *Alert) render() string {

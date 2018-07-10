@@ -23,7 +23,7 @@ func MakeInput() Input {
 	return Input{id:getGlobalID(), inputType:"text"}
 }
 
-func (i *Input) GetInputId() string {
+func (i *Input) GetID() string {
 	return i.id
 }
 
@@ -60,6 +60,10 @@ func (i *Input) SetInputType(inputType string) {
 //WIP
 func (i *Input) GetValueJS() {
 	i.js += fmt.Sprintf("console.log(%s.value);", i.id)
+}
+
+func (i *Input) SetOnClickListener(listener string)  {
+	i.js += fmt.Sprintf("%s.onclick = function(){%s}",i.id,listener)
 }
 
 func (i *Input) render() string {
