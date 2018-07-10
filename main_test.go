@@ -128,6 +128,8 @@ func TestCore (t *testing.T) {
 	button := MakeButton()
 	button.SetText("Click me")
 	button.SetOnClickListener(helloworldLabel.SetTextJS("You clicked button"))
+	button.DropdownEnabled(true)
+	println(button.AddDropdownItem("dTest"))
 	testPage.Attach(&button)
 
 	testPage.Render()

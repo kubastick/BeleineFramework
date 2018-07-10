@@ -27,13 +27,33 @@ type Button struct {
 	btnType string
 	outline string
 	state bool
+	dropdown bool
+	ddItems map[string]dropdownItem
 	js string
+}
+
+type dropdownItem struct {
+	id string
+	name string
 }
 
 
 //Pseudo-object creation function
 func MakeButton() Button {
 	return Button{id:getGlobalID(),btnType:"-primary",state:true}
+}
+
+func (b *Button) DropdownEnabled(enable bool) {
+	b.dropdown = enable
+	if enable {
+		b.ddItems = make(map[string]dropdownItem)
+	}
+}
+
+func (b *Button) AddDropdownItem(name string) string {
+	b.ddItems[name].name = name
+	//b.ddItems[name].id = getGlobalID()
+	return b.ddItems["dTest"].name
 }
 
 func (b *Button) GetID() string {
