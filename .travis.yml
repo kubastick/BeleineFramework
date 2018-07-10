@@ -3,5 +3,5 @@ language: go
 go:
   - "1.10.x"
 
- notifications:
-    slack: beleineframework:6GsNECc5vkmWUrjSHphNgiEO
+notifications:
+  slack: beleineframework:6GsNECc5vkmWUrjSHphNgiEO
