@@ -6,6 +6,15 @@ import (
 	"fmt"
 )
 
+/*
+Button types:
+	DEFAULT = 0
+	SUCCES = 1
+	IFNO = 2
+	WARNING = 3
+	DANGER = 4
+*/
+
 type Progress struct {
 	id string
 	max int

@@ -10,14 +10,14 @@ import (
 /*
 Button types:
 	PRIMARY = 0
-	SUCCES = 1
-	IFNO = 2
-	WARNING = 3
-	DANGER = 4
-	PRIMARY = 5
-	SECONDARY = 6
-	LIGHT = 7
-	DARK = 8
+	SECONDARY = 1
+	SUCCES = 2
+	DANGER = 3
+	WARNING = 4
+	IFNO = 5
+	LIGHT = 6
+	DARK = 7
+	LINK = 8
 */
 
 type Button struct {
