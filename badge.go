@@ -31,7 +31,7 @@ func (b *Badge) SetOnClickListener(listener string) {
 }
 
 func (b *Badge) render() string {
-	return fmt.Sprintf(`<span class="badge badge-secondary">%s</span>`,b.text)
+	return fmt.Sprintf(`<span id="%s" class="badge badge-secondary">%s</span>`,b.id,b.text)
 }
 
 func (b *Badge) renderJS() string {

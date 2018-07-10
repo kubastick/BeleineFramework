@@ -43,7 +43,7 @@ func (p *Progress) SetMinMax(min, max int) {
 
 func (p *Progress) SetLabels(showLabels bool) {
 	if showLabels {
-		p.showLabels = fmt.Sprintf("%d",p.percent)
+		p.showLabels = fmt.Sprintf("%d%s",p.percent, "%")
 	} else {
 		p.showLabels = ""
 	}

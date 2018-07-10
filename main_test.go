@@ -5,6 +5,59 @@ import (
 	"fmt"
 )
 
+func TestBadge(t *testing.T) {
+	badge := MakeBadge()
+
+	badge.SetText("xCairuuu")
+	if badge.render() != fmt.Sprintf(`<span id="%s" class="badge badge-secondary">xCairuuu</span>`,badge.GetID()) {t.Fail()}
+
+}
+func TestProgress(t *testing.T) {
+	progress :=MakeProgress()
+
+	progress.SetMinMax(0,100)
+	if progress.render() != fmt.Sprintf(`
+	<div id="%s" class="progress">
+  		<div class="progress-bar   " role="progressbar" style="width: 0%s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+	</div>
+	`,progress.GetID(), "%") {t.Fail()}
+
+	progress.SetLabels(true)
+	if progress.render() != fmt.Sprintf(`
+	<div id="%s" class="progress">
+  		<div class="progress-bar   " role="progressbar" style="width: 0%s" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%s</div>
+	</div>
+	`,progress.GetID(), "%", "%") {t.Fail()}
+
+	progress.SetPercent(45)
+	if progress.render() != fmt.Sprintf(`
+	<div id="%s" class="progress">
+  		<div class="progress-bar   " role="progressbar" style="width: 45%s" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">0%s</div>
+	</div>
+	`,progress.GetID(), "%", "%") {t.Fail()}
+
+	progress.SetProgressType(2)
+	if progress.render() != fmt.Sprintf(`
+	<div id="%s" class="progress">
+  		<div class="progress-bar  bg-info " role="progressbar" style="width: 45%s" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">0%s</div>
+	</div>
+	`,progress.GetID(), "%", "%") {t.Fail()}
+
+	progress.SetStriped(true)
+	if progress.render() != fmt.Sprintf(`
+	<div id="%s" class="progress">
+  		<div class="progress-bar progress-bar-striped bg-info " role="progressbar" style="width: 45%s" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">0%s</div>
+	</div>
+	`,progress.GetID(), "%", "%") {t.Fail()}
+
+	progress.SetAnimation(true)
+	if progress.render() != fmt.Sprintf(`
+	<div id="%s" class="progress">
+  		<div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" style="width: 45%s" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">0%s</div>
+	</div>
+	`,progress.GetID(), "%", "%") {t.Fail()}
+}
+
 func TestInput(t *testing.T) {
 	input := MakeInput()
 	input.SetHint("Username")
