@@ -23,7 +23,7 @@ func MakeInput() Input {
 	return Input{id:getGlobalID(), inputType:"text"}
 }
 
-func (i *Input) GetInputId() string {
+func (i *Input) GetID() string {
 	return i.id
 }
 

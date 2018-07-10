@@ -31,7 +31,7 @@ func MakeAlert() Alert {
 	return Alert{id:getGlobalID()}
 }
 
-func (a *Alert) GetAlertId() string {
+func (a *Alert) GetID() string {
 	return a.id
 }
 

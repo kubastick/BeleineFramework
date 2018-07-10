@@ -61,11 +61,11 @@ func TestProgress(t *testing.T) {
 func TestInput(t *testing.T) {
 	input := MakeInput()
 	input.SetHint("Username")
-	if input.render() != fmt.Sprintf(`<input id="%s" type="text" class="form-control " placeholder="Username">`,input.GetInputId()) {t.Fail()}
+	if input.render() != fmt.Sprintf(`<input id="%s" type="text" class="form-control " placeholder="Username">`,input.GetID()) {t.Fail()}
 	input.SetSize(2)
-	if input.render() != fmt.Sprintf(`<input id="%s" type="text" class="form-control form-control-lg" placeholder="Username">`,input.GetInputId()) {t.Fail()}
+	if input.render() != fmt.Sprintf(`<input id="%s" type="text" class="form-control form-control-lg" placeholder="Username">`,input.GetID()) {t.Fail()}
 	input.SetInputType("password")
-	if input.render() != fmt.Sprintf(`<input id="%s" type="password" class="form-control form-control-lg" placeholder="Username">`,input.GetInputId()) {t.Fail()}
+	if input.render() != fmt.Sprintf(`<input id="%s" type="password" class="form-control form-control-lg" placeholder="Username">`,input.GetID()) {t.Fail()}
 }
 
 func TestButton(t *testing.T) {
@@ -102,7 +102,7 @@ func TestAlert(t *testing.T) {
 	<div id="%s" class=".alert-success">
   		<strong>Hello world</strong> This is alert description
 	</div>
-	`,alert.GetAlertId()) {t.Fail()}
+	`,alert.GetID()) {t.Fail()}
 
 	alert.SetAlertType(6)
 	alert.SetStrongText("World hello")
@@ -110,7 +110,7 @@ func TestAlert(t *testing.T) {
 	<div id="%s" class=".alert-light">
   		<strong>World hello</strong> This is alert description
 	</div>
-	`,alert.GetAlertId()) {t.Fail()}
+	`,alert.GetID()) {t.Fail()}
 }
 
 func TestCore (t *testing.T) {
