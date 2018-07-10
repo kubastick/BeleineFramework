@@ -84,6 +84,10 @@ func (p *Progress) SetAnimation(animated bool) {
 	}
 }
 
+func (p *Progress) SetOnClickListener(listener string)  {
+	p.js += fmt.Sprintf("%s.onclick = function(){%s}",p.id,listener)
+}
+
 func (p *Progress) render() string {
 	return fmt.Sprintf(`
 	<div id="%s" class="progress">

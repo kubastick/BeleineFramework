@@ -62,6 +62,10 @@ func (i *Input) GetValueJS() {
 	i.js += fmt.Sprintf("console.log(%s.value);", i.id)
 }
 
+func (i *Input) SetOnClickListener(listener string)  {
+	i.js += fmt.Sprintf("%s.onclick = function(){%s}",i.id,listener)
+}
+
 func (i *Input) render() string {
 	return fmt.Sprintf(`<input id="%s" type="%s" class="form-control %s" placeholder="%s">`, i.id, i.inputType, i.size, i.hint)
 }

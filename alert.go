@@ -47,6 +47,10 @@ func (a *Alert) SetAlertType(alertType int) {
 	a.alertType = alertType
 }
 
+func (a *Alert) SetOnClickListener(listener string)  {
+	a.js += fmt.Sprintf("%s.onclick = function(){%s}",a.id,listener)
+}
+
 func (a *Alert) render() string {
 	return fmt.Sprintf(`
 	<div id="%s" class="%s">
