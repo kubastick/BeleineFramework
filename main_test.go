@@ -9,8 +9,11 @@ func TestBadge(t *testing.T) {
 	badge := MakeBadge()
 
 	badge.SetText("xCairuuu")
-	if badge.render() != fmt.Sprintf(`<span id="%s" class="badge badge-secondary">xCairuuu</span>`,badge.GetID()) {t.Fail()}
-
+	if badge.render() != fmt.Sprintf(`<span id="%s" class="badge badge-primary">xCairuuu</span>`,badge.GetID()) {t.Fail()}
+	badge.SetText("Bye world")
+	badge.SetStyle(2)
+	badge.SetPill(true)
+	if badge.render() != fmt.Sprintf(`<span id="%s" class="badge badge-pill badge-success">Bye world</span>`,badge.GetID()) {t.Fail()}
 }
 func TestProgress(t *testing.T) {
 	progress :=MakeProgress()
