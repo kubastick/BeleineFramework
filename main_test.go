@@ -4,6 +4,16 @@ import (
 	"testing"
 )
 
+func TestInput(t *testing.T) {
+	input := MakeInput()
+	input.SetHint("Username")
+	if input.render() != `<input type="text" class="form-control " placeholder="Username">` {t.Fail()}
+	input.SetSize(2)
+	if input.render() != `<input type="text" class="form-control form-control-lg" placeholder="Username">` {t.Fail()}
+	input.SetInputType("password")
+	if input.render() != `<input type="password" class="form-control form-control-lg" placeholder="Username">` {t.Fail()}
+}
+
 func TestButton(t *testing.T) {
 	button := MakeButton()
 	button.SetText("Click")
