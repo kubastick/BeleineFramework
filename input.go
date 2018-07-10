@@ -57,9 +57,9 @@ func (i *Input) SetInputType(inputType string) {
 	i.inputType = inputType
 }
 
-//WIP
-func (i *Input) GetValueJS() {
-	i.js += fmt.Sprintf("console.log(%s.value);", i.id)
+//Finished ~kubastick
+func (i *Input) GetTextJS() string {
+	return fmt.Sprintf("%s.value", i.id)
 }
 
 func (i *Input) SetOnClickListener(listener string)  {

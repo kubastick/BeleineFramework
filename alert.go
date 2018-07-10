@@ -85,4 +85,3 @@ func (a *Alert) getDivClassName(num int) string {
 	panic("illegal alert type number")
 }
 
-

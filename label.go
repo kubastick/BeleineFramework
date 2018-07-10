@@ -55,3 +55,7 @@ func (l *Label) render() string {
 func (l *Label) renderJS() string {
 	return l.js
 }
+
+func (l *Label) GetTextJS() string{
+	return fmt.Sprintf("%s.value", l.id)
+}

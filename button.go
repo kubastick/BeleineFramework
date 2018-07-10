@@ -118,3 +118,7 @@ func (b *Button) render() string {
 func (b *Button) renderJS() string {
 	return b.js
 }
+
+func (b *Button) GetTextJS() string{
+	return fmt.Sprintf("%s.value", b.id)
+}
