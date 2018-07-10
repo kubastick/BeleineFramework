@@ -51,7 +51,7 @@ func (b *Button) DropdownEnabled(enable bool) {
 }
 
 func (b *Button) AddDropdownItem(name string) string {
-	b.ddItems[name].name = name
+	b.ddItems[name] = dropdownItem{name:name}
 	//b.ddItems[name].id = getGlobalID()
 	return b.ddItems["dTest"].name
 }
