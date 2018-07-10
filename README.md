@@ -14,3 +14,16 @@ fmt.Println(testPage.Render())
 ```
 
 Is this not looking easy ?
+
+Now more powerful thing:
+
+```
+var interactivePage Page
+
+clickMeLabel := MakeLabel()
+clickMeLabel.SetText("Click me")
+clickMeLabel.SetOnClickListener(clickMeLabel.SetTextJS("Clicked"))
+interactivePage.Attach(&clickMeLabel)
+
+fmt.Println(interactivePage.Render())
+```
