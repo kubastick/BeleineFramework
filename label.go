@@ -17,8 +17,9 @@ func MakeLabel() Label {
 	return Label{id:strconv.Itoa(getGlobalID())}
 }
 
-func (l *Label) SetText(text string) {
+func (l *Label) SetText(text string) string {
 	l.text = text
+	return fmt.Sprintf("%s.innerHTML=%s",l.id,text)
 }
 
 ///Size in 0-6 number, 0 - default 1-6 <Hx>
