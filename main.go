@@ -46,6 +46,7 @@ func (p *Page) Render() string{
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 		</head>
 	<body>
+	<div class="container">
 	`,p.title)
 
 	//HTML
@@ -61,7 +62,7 @@ func (p *Page) Render() string{
 	result += `</script>`
 
 	//Footer
-	result += `</body></html>`
+	result += `</div></body></html>`
 	return result
 }
 

@@ -124,9 +124,15 @@ func TestCore (t *testing.T) {
 	helloworldLabel.SetSize(1) //H1
 	helloworldLabel.SetOnClickListener(helloworldLabel.SetTextJS("Hi!"))
 	testPage.Attach(&helloworldLabel)
+
+	button := MakeButton()
+	button.SetText("Click me")
+	button.SetOnClickListener(helloworldLabel.SetTextJS("You clicked button"))
+	testPage.Attach(&button)
+
 	testPage.Render()
 
-	println(testPage.Render())
+	//println(testPage.Render())
 }
 
 func BenchmarkPageHelloWorld(b *testing.B) {
