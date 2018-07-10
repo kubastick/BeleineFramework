@@ -135,6 +135,19 @@ func TestCore (t *testing.T) {
 	//println(testPage.Render())
 }
 
+func TestJumbotron(t *testing.T){
+	jumbotron := MakeJumbotron()
+
+	if jumbotron.render() != fmt.Sprintf(`<div id="%s" class="jumbotron"></div>`,jumbotron.GetID()) {t.Fail()}
+
+	label := MakeLabel()
+	label.SetText("hello")
+	jumbotron.Attach(&label)
+	jumbotron.SetFluid(true)
+
+	if jumbotron.render() !=  fmt.Sprintf(`<div id="%s" class="jumbotron jumbotron-fluid"><p id="%s">hello</p></div>`,jumbotron.id,label.id) {t.Fail()}
+}
+
 func BenchmarkPageHelloWorld(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		var testPage Page
