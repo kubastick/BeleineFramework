@@ -1,5 +1,7 @@
 package beleine
 
+//BADGE
+
 import (
 	"fmt"
 	"errors"

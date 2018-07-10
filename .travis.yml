@@ -4,6 +4,4 @@ go:
   - "1.10.x"
 
  notifications:
-  slack:
-    rooms:
-      - beleineframework:ZLzIXmqldnUOxaWjYDxFg3cu#general
+    slack: beleineframework:ZLzIXmqldnUOxaWjYDxFg3cu
