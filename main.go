@@ -13,13 +13,17 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 //variables
 var globalID int
 
 type component interface {
 	render() string
+	renderJS() string
 }
 
 type Page struct {
@@ -44,9 +48,17 @@ func (p *Page) Render() string{
 	<body>
 	`,p.title)
 
+	//HTML
 	for _,a := range p.components {
 		result += a.render()
 	}
+
+	//Javascript
+	result += `<script>`
+	for _,a := range p.components {
+		result += a.renderJS()
+	}
+	result += `</script>`
 
 	//Footer
 	result += `</body></html>`
@@ -62,8 +74,8 @@ func (p *Page) SetTitle(title string) {
 }
 
 ///Get unique component ID
-func getGlobalID() int {
+func getGlobalID() string {
 	x := globalID
 	globalID++
-	return x
+	return "a" + strconv.Itoa(x)
 }

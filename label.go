@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"errors"
 )
 
@@ -10,20 +9,28 @@ type Label struct {
 	id string
 	text string
 	size int
+	js string
 }
 
 //Pseudo-object creation function
 func MakeLabel() Label {
-	return Label{id:strconv.Itoa(getGlobalID())}
+	return Label{id:getGlobalID()}
 }
 
-func (l *Label) GetLabelId() string {
+func (l *Label) GetID() string {
 	return l.id
 }
 
-func (l *Label) SetText(text string) string {
+func (l *Label) SetText(text string) {
 	l.text = text
-	return fmt.Sprintf("%s.innerHTML=%s",l.id,text)
+}
+
+func (l *Label) SetTextJS(text string) string {
+	return fmt.Sprintf(`%s.innerHTML="%s"`,l.id,text)
+}
+
+func (l *Label) SetOnClickListener(listener string)  {
+	l.js += fmt.Sprintf("%s.onclick = function(){%s}",l.id,listener)
 }
 
 ///Size in 0-6 number, 0 - default 1-6 <Hx>
@@ -41,4 +48,8 @@ func (l *Label) render() string {
 	} else {
 		return fmt.Sprintf(`<h%d id="%s">%s</h%d>`,l.size,l.id,l.text,l.size)
 	}
+}
+
+func (l *Label) renderJS() string {
+	return l.js
 }

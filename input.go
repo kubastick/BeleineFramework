@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"errors"
 )
 
@@ -18,7 +17,7 @@ type Input struct {
 
 //Pseudo-object creation function
 func MakeInput() Input {
-	return Input{id:strconv.Itoa(getGlobalID()), inputType:"text"}
+	return Input{id:getGlobalID(), inputType:"text"}
 }
 
 func (i *Input) GetInputId() string {

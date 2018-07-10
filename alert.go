@@ -1,7 +1,6 @@
 package main
 
 import (
-	"strconv"
 	"fmt"
 )
 
@@ -26,7 +25,7 @@ type Alert struct {
 }
 
 func MakeAlert() Alert {
-	return Alert{id:strconv.Itoa(getGlobalID())}
+	return Alert{id:getGlobalID()}
 }
 
 func (a *Alert) GetAlertId() string {

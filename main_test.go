@@ -32,11 +32,11 @@ func TestButton(t *testing.T) {
 func TestLabel(t *testing.T) {
 	label := MakeLabel()
 	label.SetText("Hello world")
-	if label.render() != fmt.Sprintf(`<p id="%s">Hello world</p>`,label.GetLabelId()) {t.Fail()}
+	if label.render() != fmt.Sprintf(`<p id="%s">Hello world</p>`,label.GetID()) {t.Fail()}
 	label.SetSize(1)
-	if label.render() != fmt.Sprintf(`<h1 id="%s">Hello world</h1>`,label.GetLabelId()) {t.Fail()}
+	if label.render() != fmt.Sprintf(`<h1 id="%s">Hello world</h1>`,label.GetID()) {t.Fail()}
 	label.SetSize(6)
-	if label.render() != fmt.Sprintf(`<h6 id="%s">Hello world</h6>`,label.GetLabelId()) {t.Fail()}
+	if label.render() != fmt.Sprintf(`<h6 id="%s">Hello world</h6>`,label.GetID()) {t.Fail()}
 }
 
 func TestAlert(t *testing.T) {
@@ -66,9 +66,11 @@ func TestCore (t *testing.T) {
 	helloworldLabel := MakeLabel()
 	helloworldLabel.SetText("Hello world")
 	helloworldLabel.SetSize(1) //H1
+	helloworldLabel.SetOnClickListener(helloworldLabel.SetTextJS("Hi!"))
 	testPage.Attach(&helloworldLabel)
-	//fmt.Println(testPage.Render())
 	testPage.Render()
+
+	println(testPage.Render())
 }
 
 func BenchmarkPageHelloWorld(b *testing.B) {

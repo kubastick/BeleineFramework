@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"errors"
 )
 
@@ -31,7 +30,7 @@ type Button struct {
 
 //Pseudo-object creation function
 func MakeButton() Button {
-	return Button{id:strconv.Itoa(getGlobalID()),btnType:"-primary",state:true}
+	return Button{id:getGlobalID(),btnType:"-primary",state:true}
 }
 
 func (b *Button) GetBtnId() string {
