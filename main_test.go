@@ -1,4 +1,4 @@
-package main
+package beleine
 
 import (
 	"testing"
@@ -18,15 +18,15 @@ func TestInput(t *testing.T) {
 func TestButton(t *testing.T) {
 	button := MakeButton()
 	button.SetText("Click")
-	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-primary ">Click</button>`,button.GetBtnId()) {t.Fail()}
+	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-primary ">Click</button>`,button.GetID()) {t.Fail()}
 	button.SetSize(0)
-	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-primary btn-sm">Click</button>`,button.GetBtnId()) {t.Fail()}
+	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-primary btn-sm">Click</button>`,button.GetID()) {t.Fail()}
 	button.SetButtonType(1)
-	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-secondary btn-sm">Click</button>`,button.GetBtnId()) {t.Fail()}
+	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-secondary btn-sm">Click</button>`,button.GetID()) {t.Fail()}
 	button.SetOutline(true)
-	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-outline-secondary btn-sm">Click</button>`,button.GetBtnId()) {t.Fail()}
+	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-outline-secondary btn-sm">Click</button>`,button.GetID()) {t.Fail()}
 	button.SetState(false)
-	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-outline-secondary btn-sm" disabled>Click</button>`,button.GetBtnId()) {t.Fail()}
+	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-outline-secondary btn-sm" disabled>Click</button>`,button.GetID()) {t.Fail()}
 }
 
 func TestLabel(t *testing.T) {

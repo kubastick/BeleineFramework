@@ -1,4 +1,4 @@
-package main
+package beleine
 
 import (
 	"fmt"
@@ -21,6 +21,7 @@ type Alert struct {
 	strongText string
 	text string
 	alertType int
+	js string
 	//TODO closable bool
 }
 
@@ -49,10 +50,14 @@ func (a *Alert) render() string {
 	<div id="%s" class="%s">
   		<strong>%s</strong> %s
 	</div>
-	`, a.id, getDivClassName(a.alertType),a.strongText,a.text)
+	`, a.id, a.getDivClassName(a.alertType),a.strongText,a.text)
 }
 
-func getDivClassName(num int) string {
+func (a *Alert) renderJS() string {
+	return a.js
+}
+
+func (a *Alert) getDivClassName(num int) string {
 	switch num {
 	case 0:
 		return ".alert-success"

@@ -1,4 +1,4 @@
-package main
+package beleine
 
 import (
 	"fmt"
@@ -12,6 +12,7 @@ type Input struct {
 	hint string
 	size string
 	inputType string
+	js string
 }
 
 
@@ -56,5 +57,9 @@ func (i *Input) SetInputType(inputType string) {
 
 func (i *Input) render() string {
 	return fmt.Sprintf(`<input id="%s" type="%s" class="form-control %s" placeholder="%s">`, i.id, i.inputType, i.size, i.hint)
+}
+
+func (i *Input) renderJS() string {
+	return i.js
 }
 

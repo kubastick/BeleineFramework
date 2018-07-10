@@ -11,7 +11,7 @@
 
  */
 
-package main
+package beleine
 
 import (
 	"fmt"
@@ -56,7 +56,7 @@ func (p *Page) Render() string{
 	//Javascript
 	result += `<script>`
 	for _,a := range p.components {
-		result += a.renderJS()
+		result += a.renderJS() + ";"
 	}
 	result += `</script>`
 

@@ -1,4 +1,4 @@
-package main
+package beleine
 
 import (
 	"fmt"
@@ -25,6 +25,7 @@ type Button struct {
 	btnType string
 	outline string
 	state bool
+	js string
 }
 
 
@@ -33,12 +34,16 @@ func MakeButton() Button {
 	return Button{id:getGlobalID(),btnType:"-primary",state:true}
 }
 
-func (b *Button) GetBtnId() string {
+func (b *Button) GetID() string {
 	return b.id
 }
 
 func (b *Button) SetText(text string) {
 	b.text = text
+}
+
+func (b *Button) SetTextJS(text string) string {
+	return fmt.Sprintf(`%s.innerHTML="%s"`,b.id,text)
 }
 
 ///Size in 0-2 number, 1 - default
@@ -96,14 +101,18 @@ func (b *Button) SetState(state bool) {
 		b.state = state
 }
 
+func (b *Button) SetOnClickListener(listener string)  {
+	b.js += fmt.Sprintf("%s.onclick = function(){%s}",b.id,listener)
+}
 
 func (b *Button) render() string {
-
-
 	if b.state {
 		return fmt.Sprintf(`<button id="%s" type="button" class="btn btn%s%s %s">%s</button>`, b.id, b.outline, b.btnType, b.size, b.text)
 	} else {
 		return fmt.Sprintf(`<button id="%s" type="button" class="btn btn%s%s %s" disabled>%s</button>`, b.id, b.outline, b.btnType, b.size, b.text)
 	}
+}
 
+func (b *Button) renderJS() string {
+	return b.js
 }
