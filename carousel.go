@@ -21,6 +21,10 @@ type CarouselItem struct {
 	Caption string
 }
 
+func MakeCarousel() Carousel {
+	return Carousel{id:getGlobalID()}
+}
+
 func (c *Carousel) SetCarouselItems(items *[]CarouselItem) {
 	c.components = items
 }

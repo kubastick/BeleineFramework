@@ -150,6 +150,17 @@ func TestJumbotron(t *testing.T){
 	if jumbotron.render() !=  fmt.Sprintf(`<div id="%s" class="jumbotron jumbotron-fluid"><p id="%s">hello</p></div>`,jumbotron.id,label.id) {t.Fail()}
 }
 
+func TestCarousel(t *testing.T){
+	carousel := MakeCarousel()
+	i := make([]CarouselItem,3)
+	i[0] = CarouselItem{Title:"hello",ImageSource:"yo1.png",AltText:"Lol"}
+	i[1] = CarouselItem{Title:"world",ImageSource:"yo2.png"}
+	i[2] = CarouselItem{Title:"carousel",ImageSource:"yo3.png"}
+	carousel.SetCarouselItems(&i)
+	carousel.SetIndicatorsEnabled(true)
+	//fmt.Println(carousel.render())
+}
+
 func BenchmarkPageHelloWorld(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		var testPage Page
