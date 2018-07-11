@@ -29,6 +29,8 @@ type Button struct {
 	state bool
 	dropdown bool
 	ddItems map[string]Dropdown
+	collapse bool
+	cItem Collapse
 	js string
 }
 
@@ -128,6 +130,20 @@ func (b *Button) render() string {
 %s</div>
 </div>
 			`,b.outline,b.btnType,b.size,b.id,b.text,dItems)
+		}
+		if b.collapse {
+			return fmt.Sprintf(`
+<p>
+  <button id="%s" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Button with data-target
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+  </div>
+</div>
+			`)
 		}
 		return fmt.Sprintf(`<button id="%s" type="button" class="btn btn%s%s %s">%s</button>`, b.id, b.outline, b.btnType, b.size, b.text)
 	} else {
