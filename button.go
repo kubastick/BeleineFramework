@@ -28,14 +28,10 @@ type Button struct {
 	outline string
 	state bool
 	dropdown bool
-	ddItems map[string]dropdownItem
+	ddItems map[string]Dropdown
 	js string
 }
 
-type dropdownItem struct {
-	id string
-	name string
-}
 
 
 //Pseudo-object creation function
@@ -43,18 +39,6 @@ func MakeButton() Button {
 	return Button{id:getGlobalID(),btnType:"-primary",state:true}
 }
 
-func (b *Button) DropdownEnabled(enable bool) {
-	b.dropdown = enable
-	if enable {
-		b.ddItems = make(map[string]dropdownItem)
-	}
-}
-
-func (b *Button) AddDropdownItem(name string) string {
-	b.ddItems[name] = dropdownItem{name:name}
-	//b.ddItems[name].id = getGlobalID()
-	return b.ddItems["dTest"].name
-}
 
 func (b *Button) GetID() string {
 	return b.id
@@ -129,6 +113,22 @@ func (b *Button) SetOnClickListener(listener string)  {
 
 func (b *Button) render() string {
 	if b.state {
+		if b.dropdown {
+			dItems := ""
+			for _,v := range b.ddItems {
+				dItems += fmt.Sprintf(`	<a id="%s" class="dropdown-item" href="#">%s</a>
+`,v.id,v.name)
+			}
+			return fmt.Sprintf(`
+<div class="dropdown">
+  <button class="btn btn%s%s %s dropdown-toggle" type="button" id="%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    %s
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+%s</div>
+</div>
+			`,b.outline,b.btnType,b.size,b.id,b.text,dItems)
+		}
 		return fmt.Sprintf(`<button id="%s" type="button" class="btn btn%s%s %s">%s</button>`, b.id, b.outline, b.btnType, b.size, b.text)
 	} else {
 		return fmt.Sprintf(`<button id="%s" type="button" class="btn btn%s%s %s" disabled>%s</button>`, b.id, b.outline, b.btnType, b.size, b.text)

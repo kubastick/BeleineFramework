@@ -5,6 +5,39 @@ import (
 	"fmt"
 )
 
+func TestDropdown(t *testing.T) {
+	dropdown := MakeButton()
+	dropdown.SetText("Animals")
+	dropdown.SetSize(2)
+	dropdown.SetButtonType(3)
+	dropdown.DropdownEnabled(true)
+
+	dropdown.AddDropdownItem("Cat")
+	if dropdown.render() != fmt.Sprintf(`
+<div class="dropdown">
+  <button class="btn btn-danger btn-lg dropdown-toggle" type="button" id="%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Animals
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	<a id="%s" class="dropdown-item" href="#">Cat</a>
+</div>
+</div>
+			`,dropdown.GetID(),dropdown.GetDropdownItemID("Cat")) {t.Fail()}
+
+	dropdown.AddDropdownItem("Dog")
+	if dropdown.render() != fmt.Sprintf(`
+<div class="dropdown">
+  <button class="btn btn-danger btn-lg dropdown-toggle" type="button" id="%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Animals
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	<a id="%s" class="dropdown-item" href="#">Cat</a>
+	<a id="%s" class="dropdown-item" href="#">Dog</a>
+</div>
+</div>
+			`,dropdown.GetID(),dropdown.GetDropdownItemID("Cat"),dropdown.GetDropdownItemID("Dog")) {t.Fail()}
+}
+
 func TestBadge(t *testing.T) {
 	badge := MakeBadge()
 
@@ -128,8 +161,7 @@ func TestCore (t *testing.T) {
 	button := MakeButton()
 	button.SetText("Click me")
 	button.SetOnClickListener(helloworldLabel.SetTextJS("You clicked button"))
-	button.DropdownEnabled(true)
-	println(button.AddDropdownItem("dTest"))
+
 	testPage.Attach(&button)
 
 	testPage.Render()
