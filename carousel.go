@@ -3,7 +3,8 @@ package beleine
 import "fmt"
 
 //Carousel
-
+//TODO:Finish rendering captions
+//TODO:Add JS functions, and api
 type Carousel struct {
 	id string
 	components *[]CarouselItem
@@ -22,6 +23,18 @@ type CarouselItem struct {
 
 func (c *Carousel) SetCarouselItems(items *[]CarouselItem) {
 	c.components = items
+}
+
+func (c *Carousel) SetControlsEnabled(enabled bool) {
+	c.controls = enabled
+}
+
+func (c *Carousel) SetIndicatorsEnabled(enabled bool) {
+	c.indicators = enabled
+}
+
+func (c *Carousel) SetCaptionsEnabled(enabled bool) {
+	c.captions = enabled
 }
 
 func(c *Carousel) render() string {
@@ -62,4 +75,8 @@ func(c *Carousel) render() string {
 
 	}
 	return result
+}
+
+func (c *Carousel) renderJS() string {
+	return ""
 }
