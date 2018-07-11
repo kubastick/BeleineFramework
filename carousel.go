@@ -6,7 +6,7 @@ import "fmt"
 
 type Carousel struct {
 	id string
-	components []CarouselItem
+	components *[]CarouselItem
 	controls bool
 	indicators bool
 	captions bool
@@ -20,13 +20,46 @@ type CarouselItem struct {
 	Caption string
 }
 
+func (c *Carousel) SetCarouselItems(items *[]CarouselItem) {
+	c.components = items
+}
+
 func(c *Carousel) render() string {
-	result := `
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+	result := fmt.Sprintf(`
+<div id="%s" class="carousel slide" data-ride="carousel">
 <div class="carousel-inner">
-    `
-    for _,i := range c.components {
-    	result += `<div class="carousel-item">`
-    	result += fmt.Sprintf(` <img class="d-block w-100" src="%s" alt="%s">`,i.ImageSource,i.AltText)
+    `,c.id)
+    if c.indicators {
+    	first := ` class="active"`
+    	result += `<ol class="carousel-indicators">`
+
+    	for i:=0;i<len(*c.components);i++ {
+			result += fmt.Sprintf(`<li data-target="#%s" data-slide-to="0"%s"></li>`,c.id,first)
+			if first != "" {
+				first = ""
+			}
+		}
 	}
+	first := " active"
+    for _,i := range *c.components {
+    	result += fmt.Sprintf(`<div class="carousel-item%s">`,first)
+    	result += fmt.Sprintf(` <img class="d-block w-100" src="%s" alt="%s">`,i.ImageSource,i.AltText)
+    	result += `</div>`
+    	if first != "" {
+			first = ""
+		}
+	}
+
+	if c.controls {
+		result += `<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>`
+
+	}
+	return result
 }
