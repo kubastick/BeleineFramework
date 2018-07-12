@@ -18,25 +18,29 @@ type Input struct {
 }
 
 
-//Pseudo-object creation function
+//Create new Input struct
 func MakeInput() Input {
-	return Input{id:getGlobalID(), inputType:"text"}
+	return Input{id:getGlobalID(), inputType:"text",size:1}
 }
 
+//Returns ID of component
 func (i *Input) GetID() string {
 	return i.id
 }
 
+//Return JS code as string, that sets Input text
 func (i *Input) SetTextJS(text string) string {
 	i.text = text
 	return fmt.Sprintf(`%s.value="%s"`,i.id,i.text)
 }
 
+//Sets input hint
 func (i *Input) SetHint(hint string) {
 	i.hint = hint
 }
 
-///Size in 0-2 number, 1 - default
+//Size in 0-2 number, 1 - default
+//Throws error when size is not in 0-2 range
 func (i *Input) SetSize(size int) error {
 	switch size {
 	case 0:
@@ -51,15 +55,18 @@ func (i *Input) SetSize(size int) error {
 	return nil
 }
 
+//Sets input type
+//TODO:Make switch instead of html code
 func (i *Input) SetInputType(inputType string) {
 	i.inputType = inputType
 }
 
-//Finished ~kubastick
+//Return JS code as string, that returns value of input
 func (i *Input) GetTextJS() string {
 	return fmt.Sprintf("%s.value", i.id)
 }
 
+//Sets js code, to be executed after click
 func (i *Input) SetOnClickListener(listener string)  {
 	i.js += fmt.Sprintf("%s.onclick = function(){%s}",i.id,listener)
 }
