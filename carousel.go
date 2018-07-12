@@ -27,6 +27,11 @@ func MakeCarousel() Carousel {
 	return Carousel{id:getGlobalID()}
 }
 
+//Return ID of the carousel
+func (c *Carousel) GetID() string {
+	return c.id
+}
+
 //Set Carousel items
 func (c *Carousel) SetCarouselItems(items *[]CarouselItem) {
 	c.components = items
@@ -55,6 +60,11 @@ func (c *Carousel) SetIntervalJS (interval int) string {
 //Sets interval of carousel rotating
 func (c *Carousel) SetInterval (interval int) {
 	c.js += c.SetIntervalJS(interval) +";"
+}
+
+//Sets JS code function, to be executed after click
+func (c *Carousel) SetOnClickListener(listener string) {
+	c.js += fmt.Sprintf("%s.onclick = function(){%s};",c.id,listener)
 }
 
 func(c *Carousel) render() string {

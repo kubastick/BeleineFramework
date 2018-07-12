@@ -6,12 +6,15 @@ type Jumbotron struct {
 	id string
 	components []component
 	fluid bool
+	js string
 }
 
+//Create Jumbotron struct
 func MakeJumbotron() Jumbotron {
 	return Jumbotron{id:getGlobalID()}
 }
 
+//Attach component to Jumbotron
 func (j *Jumbotron) Attach(c component) {
 	j.components = append(j.components,c)
 }
@@ -29,14 +32,21 @@ func (j *Jumbotron) render() string {
 }
 
 func (j *Jumbotron) renderJS() string {
-	return ""
+	return j.js
 }
 
+//Enable/disable Jumbotron fluid
 func (j *Jumbotron) SetFluid (fluid bool) {
 	j.fluid = fluid
 }
 
+//Returns component ID
 func (j *Jumbotron) GetID() string {
 	return j.id
+}
+
+//Sets JS code function, to be executed after click
+func (j *Jumbotron) SetOnClickListener(listener string) {
+	j.js += fmt.Sprintf("%s.onclick = function(){%s};",j.id,listener)
 }
 
