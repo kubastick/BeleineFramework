@@ -3,7 +3,6 @@ package beleine
 import (
 	"testing"
 	"fmt"
-	"BeleineFramework/JSGen"
 )
 
 func TestCollapse(t *testing.T) {
@@ -292,7 +291,7 @@ func BenchmarkPageLoginPrepared(b *testing.B) {
 	submitButton := MakeButton()
 	submitButton.SetText("Login")
 	submitButton.SetOnClickListener(
-		beleine.PostRequestJS("127.0.0.1/api", fmt.Sprintf("{l:%s,p:%s",login.GetTextJS(),password.GetTextJS()),"") +
+		PostRequestJS("127.0.0.1/api", fmt.Sprintf("{l:%s,p:%s",login.GetTextJS(),password.GetTextJS()),"") +
 		submitButton.SetTextJS("Logging in..."))
 
 	testPage.Attach(&helloworldLabel)
