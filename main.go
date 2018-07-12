@@ -58,7 +58,9 @@ func (p *Page) Render() string{
 	//Javascript
 	result += `<script>`
 	for _,a := range p.components {
-		result += a.renderJS() + ";"
+		if a.renderJS() != "" {
+			result += a.renderJS() + ";"
+		}
 	}
 	result += `</script>`
 
