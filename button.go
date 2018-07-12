@@ -56,10 +56,6 @@ func (b *Button) SetTextJS(text string) string {
 
 ///Size in 0-2 number, 1 - default
 func (b *Button) SetSize(size int) error {
-	if size>2 { if size<0 {
-		return errors.New("value must be in 0-2 range")
-	}}
-
 	switch size {
 	case 0:
 		b.size = "btn-sm"
@@ -67,6 +63,8 @@ func (b *Button) SetSize(size int) error {
 		b.size = ""
 	case 2:
 		b.size = "btn-lg"
+	default:
+		return errors.New("value must be in 0-2 range")
 	}
 	return nil
 }

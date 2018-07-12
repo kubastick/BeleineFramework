@@ -4,6 +4,7 @@ package beleine
 
 import (
 	"fmt"
+	"errors"
 )
 
 /*
@@ -53,7 +54,7 @@ func (p *Progress) SetPercent(percent int) {
 	p.percent = percent
 }
 
-func (p *Progress) SetProgressType(progressType int) {
+func (p *Progress) SetProgressType(progressType int) error{
 	switch progressType {
 	case 0:
 		p.progressType = ""
@@ -65,6 +66,8 @@ func (p *Progress) SetProgressType(progressType int) {
 		p.progressType = "bg-warning"
 	case 4:
 		p.progressType = "bg-danger"
+	default:
+		return errors.New("Type does not exist")
 	}
 }
 

@@ -38,10 +38,6 @@ func (i *Input) SetHint(hint string) {
 
 ///Size in 0-2 number, 1 - default
 func (i *Input) SetSize(size int) error {
-	if size>2 { if size<0 {
-		return errors.New("value must be in 0-2 range")
-	}}
-
 	switch size {
 	case 0:
 		i.size = "form-control-sm"
@@ -49,6 +45,8 @@ func (i *Input) SetSize(size int) error {
 		i.size = ""
 	case 2:
 		i.size = "form-control-lg"
+	default:
+		return errors.New("value must be in 0-2 range")
 	}
 	return nil
 }
