@@ -5,6 +5,26 @@ import (
 	"fmt"
 )
 
+func TestCollapse(t *testing.T) {
+	collapse := MakeButton()
+	collapse.SetText("Lorem")
+	collapse.SetSize(0)
+	collapse.CollapseEnabled(true)
+	collapse.AddCollapseText("ipsum")
+	if collapse.render() != fmt.Sprintf(`
+<p>
+  <button id="%s" class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#%s" aria-expanded="false" aria-controls="%s">
+	Lorem
+  </button>
+</p>
+<div class="collapse" id="%s">
+  <div class="card card-body">
+    ipsum
+  </div>
+</div>
+			`,collapse.GetID(),collapse.GetCollapseID(),collapse.GetCollapseID(),collapse.GetCollapseID()) {t.Fail()}
+}
+
 func TestDropdown(t *testing.T) {
 	dropdown := MakeButton()
 	dropdown.SetText("Animals")

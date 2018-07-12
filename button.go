@@ -134,16 +134,16 @@ func (b *Button) render() string {
 		if b.collapse {
 			return fmt.Sprintf(`
 <p>
-  <button id="%s" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Button with data-target
+  <button id="%s" class="btn btn%s%s %s" type="button" data-toggle="collapse" data-target="#%s" aria-expanded="false" aria-controls="%s">
+	%s
   </button>
 </p>
-<div class="collapse" id="collapseExample">
+<div class="collapse" id="%s">
   <div class="card card-body">
-    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+    %s
   </div>
 </div>
-			`,b.id)
+			`,b.id,b.outline,b.btnType,b.size,b.cItem.id,b.cItem.id,b.text,b.cItem.id,b.cItem.text)
 		}
 		return fmt.Sprintf(`<button id="%s" type="button" class="btn btn%s%s %s">%s</button>`, b.id, b.outline, b.btnType, b.size, b.text)
 	} else {

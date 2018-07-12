@@ -21,3 +21,7 @@ func (b *Button) AddCollapseText(text string) error {
 	b.cItem.text = text
 	return nil
 }
+
+func (b *Button) GetCollapseID() string {
+	return b.cItem.id
+}
