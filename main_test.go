@@ -3,6 +3,7 @@ package beleine
 import (
 	"testing"
 	"fmt"
+	"BeleineFramework/JSGen"
 )
 
 func TestCollapse(t *testing.T) {
@@ -216,6 +217,17 @@ func TestCarousel(t *testing.T){
 	//TODO:Test failing
 }
 
+func TestComponentInterface(t *testing.T) {
+	var page Page
+	page.Attach(&Alert{})
+	page.Attach(&Badge{})
+	page.Attach(&Button{})
+	page.Attach(&Carousel{})
+	page.Attach(&Input{})
+	page.Attach(&Jumbotron{})
+	page.Attach(&Input{})
+}
+
 func BenchmarkPageHelloWorld(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		var testPage Page
@@ -279,7 +291,9 @@ func BenchmarkPageLoginPrepared(b *testing.B) {
 
 	submitButton := MakeButton()
 	submitButton.SetText("Login")
-	submitButton.SetOnClickListener(submitButton.SetTextJS("Loggining in..."))
+	submitButton.SetOnClickListener(
+		beleine.PostRequestJS("127.0.0.1/api", fmt.Sprintf("{l:%s,p:%s",login.GetTextJS(),password.GetTextJS()),"") +
+		submitButton.SetTextJS("Logging in..."))
 
 	testPage.Attach(&helloworldLabel)
 	testPage.Attach(&loginCaption)
