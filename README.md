@@ -6,9 +6,9 @@ Beleine Framework is the fastest way to build web applications in Go
 It gives you high level api, and every component, that you will need for web development  
 Code example:
 ```
-var testPage Page
+var testPage beleine.Page
 
-helloworldLabel := MakeLabel()
+helloworldLabel := beleine.MakeLabel()
 helloworldLabel.SetText("Hello world")
 helloworldLabel.SetSize(1) //H1
 testPage.Attach(&helloworldLabel)
@@ -20,12 +20,58 @@ Is this not looking easy ?
 Now more powerful thing:
 
 ```
-var interactivePage Page
+var interactivePage beleine.Page
 
-clickMeLabel := MakeLabel()
+clickMeLabel := beleine.MakeLabel()
 clickMeLabel.SetText("Foo")
 clickMeLabel.SetOnClickListener(clickMeLabel.SetTextJS("Bar"))
 interactivePage.Attach(&clickMeLabel)
 
 fmt.Println(interactivePage.Render())
+```
+
+Looking easy?  
+Create working web login form!
+```
+var testPage beleine.Page
+
+helloworldLabel := beleine.MakeLabel()
+helloworldLabel.SetText("Log-in into BeleineFramework")
+helloworldLabel.SetSize(1) //H1
+
+loginCaption := beleine.MakeLabel()
+loginCaption.SetText("Login")
+
+login := beleine.MakeInput()
+login.SetHint("Login")
+
+passwordCaption := beleine.MakeLabel()
+passwordCaption.SetText("Password")
+
+password := beleine.MakeInput()
+password.SetHint("*********")
+password.SetInputType("password")
+
+submitButton := beleine.MakeButton()
+submitButton.SetText("Login")
+submitButton.SetOnClickListener(
+beleine.PostRequestJS("/api/", fmt.Sprintf("{l:%s,p:%s}",login.GetTextJS(),password.GetTextJS()),submitButton.SetTextJS("Logged in!")) +
+    submitButton.SetTextJS("Logging in..."))
+
+testPage.Attach(&helloworldLabel)
+testPage.Attach(&loginCaption)
+testPage.Attach(&login)
+testPage.Attach(&passwordCaption)
+testPage.Attach(&password)
+testPage.Attach(&submitButton)
+w.Write([]byte(testPage.Render()))
+}
+```
+
+##Custom components
+Every component have to implement following methods:
+```
+func render() string //This should return html code
+func renderJS() string //This should return js code (if any)
+func GetID() string //This should return ID obtained by beleine.getGlobalID()
 ```
