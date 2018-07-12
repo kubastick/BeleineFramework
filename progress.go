@@ -69,6 +69,7 @@ func (p *Progress) SetProgressType(progressType int) error{
 	default:
 		return errors.New("Type does not exist")
 	}
+	return nil
 }
 
 func (p *Progress) SetStriped(striped bool) {
