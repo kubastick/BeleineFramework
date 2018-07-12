@@ -68,7 +68,7 @@ w.Write([]byte(testPage.Render()))
 }
 ```
 
-##Custom components
+##Custom components  
 Every component have to implement following methods:
 ```
 func render() string //This should return html code
