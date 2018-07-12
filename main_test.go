@@ -210,7 +210,9 @@ func TestCarousel(t *testing.T){
 	i[2] = CarouselItem{Title:"carousel",ImageSource:"yo3.png"}
 	carousel.SetCarouselItems(&i)
 	carousel.SetIndicatorsEnabled(true)
+	carousel.SetCaptionsEnabled(true)
 	//fmt.Println(carousel.render())
+	//TODO:Test real-world rendering
 }
 
 func BenchmarkPageHelloWorld(b *testing.B) {

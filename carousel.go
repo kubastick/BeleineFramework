@@ -61,6 +61,13 @@ func(c *Carousel) render() string {
     for _,i := range *c.components {
     	result += fmt.Sprintf(`<div class="carousel-item%s">`,first)
     	result += fmt.Sprintf(` <img class="d-block w-100" src="%s" alt="%s">`,i.ImageSource,i.AltText)
+    	if c.captions {
+    		result += fmt.Sprintf(`
+		<div class="carousel-caption d-none d-md-block">
+    	<h5>%s</h5>
+    	<p>%s</p>
+  		</div>`,i.Title,i.Caption)
+		}
     	result += `</div>`
     	if first != "" {
 			first = ""
@@ -76,7 +83,6 @@ func(c *Carousel) render() string {
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>`
-
 	}
 	return result
 }
