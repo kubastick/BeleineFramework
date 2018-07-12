@@ -228,3 +228,65 @@ func BenchmarkPageHelloWorld(b *testing.B) {
 		testPage.Render()
 	}
 }
+
+func BenchmarkPageLogin(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		var testPage Page
+
+		helloworldLabel := MakeLabel()
+		helloworldLabel.SetText("Log-in into BeleineFramework")
+		helloworldLabel.SetSize(1) //H1
+
+		loginCaption := MakeLabel()
+		loginCaption.SetText("Login")
+
+		login := MakeInput()
+		login.SetHint("Login")
+
+		password := MakeInput()
+		password.SetHint("*********")
+		password.SetInputType("password")
+
+		submitButton := MakeButton()
+		submitButton.SetText("Login")
+		submitButton.SetOnClickListener(submitButton.SetTextJS("Loggining in..."))
+
+		testPage.Attach(&helloworldLabel)
+		testPage.Attach(&loginCaption)
+		testPage.Attach(&login)
+		testPage.Attach(&password)
+		testPage.Attach(&submitButton)
+		testPage.Render()
+	}
+}
+
+func BenchmarkPageLoginPrepared(b *testing.B) {
+	var testPage Page
+
+	helloworldLabel := MakeLabel()
+	helloworldLabel.SetText("Log-in into BeleineFramework")
+	helloworldLabel.SetSize(1) //H1
+
+	loginCaption := MakeLabel()
+	loginCaption.SetText("Login")
+
+	login := MakeInput()
+	login.SetHint("Login")
+
+	password := MakeInput()
+	password.SetHint("*********")
+	password.SetInputType("password")
+
+	submitButton := MakeButton()
+	submitButton.SetText("Login")
+	submitButton.SetOnClickListener(submitButton.SetTextJS("Loggining in..."))
+
+	testPage.Attach(&helloworldLabel)
+	testPage.Attach(&loginCaption)
+	testPage.Attach(&login)
+	testPage.Attach(&password)
+	testPage.Attach(&submitButton)
+	for i := 0; i < b.N; i++ {
+		testPage.Render()
+	}
+}
