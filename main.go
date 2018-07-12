@@ -27,11 +27,13 @@ type component interface {
 	GetID() string
 }
 
+//Root Page struct
 type Page struct {
 	components []component
 	title string
 }
 
+//Return complete page as string
 func (p *Page) Render() string{
 	//Header
 	result := fmt.Sprintf(`
@@ -69,10 +71,12 @@ func (p *Page) Render() string{
 	return result
 }
 
+//Adds component to page
 func (p *Page) Attach(component component) {
 	p.components = append(p.components,component)
 }
 
+//Sets "<title>" attribute of page
 func (p *Page) SetTitle(title string) {
 	p.title = title
 }
