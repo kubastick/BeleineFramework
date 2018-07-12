@@ -77,7 +77,7 @@ func (p *Page) SetTitle(title string) {
 	p.title = title
 }
 
-///Get unique component ID
+//Get unique component ID
 func getGlobalID() string {
 	x := globalID
 	globalID++

@@ -22,27 +22,32 @@ type CarouselItem struct {
 	Caption string
 }
 
+//Create Carousel struct
 func MakeCarousel() Carousel {
 	return Carousel{id:getGlobalID()}
 }
 
+//Set Carousel items
 func (c *Carousel) SetCarouselItems(items *[]CarouselItem) {
 	c.components = items
 }
 
+//Enable/disable Carousel controls
 func (c *Carousel) SetControlsEnabled(enabled bool) {
 	c.controls = enabled
 }
 
+//Enable/disable Carousel indicators
 func (c *Carousel) SetIndicatorsEnabled(enabled bool) {
 	c.indicators = enabled
 }
 
+//Enable/disable Carousel caption text
 func (c *Carousel) SetCaptionsEnabled(enabled bool) {
 	c.captions = enabled
 }
 
-//Return set interval js code, with give interval in ms
+//Returns js code that sets interval in ms
 func (c *Carousel) SetIntervalJS (interval int) string {
 	return fmt.Sprintf(`$('%s').carousel({interval: %d})`,c.id,interval)
 }
