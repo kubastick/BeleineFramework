@@ -20,7 +20,7 @@ type Input struct {
 
 //Create new Input struct
 func MakeInput() Input {
-	return Input{id:getGlobalID(), inputType:"text",size:1}
+	return Input{id:getGlobalID(), inputType:"text"}
 }
 
 //Returns ID of component
