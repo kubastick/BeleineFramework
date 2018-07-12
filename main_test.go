@@ -213,6 +213,7 @@ func TestCarousel(t *testing.T){
 	carousel.SetCaptionsEnabled(true)
 	//fmt.Println(carousel.render())
 	//TODO:Test real-world rendering
+	//TODO:Test failing
 }
 
 func BenchmarkPageHelloWorld(b *testing.B) {

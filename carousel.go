@@ -12,6 +12,7 @@ type Carousel struct {
 	indicators bool
 	captions bool
 	crossFade bool
+	js string
 }
 
 type CarouselItem struct {
@@ -39,6 +40,16 @@ func (c *Carousel) SetIndicatorsEnabled(enabled bool) {
 
 func (c *Carousel) SetCaptionsEnabled(enabled bool) {
 	c.captions = enabled
+}
+
+//Return set interval js code, with give interval in ms
+func (c *Carousel) SetIntervalJS (interval int) string {
+	return fmt.Sprintf(`$('%s').carousel({interval: %d})`,c.id,interval)
+}
+
+//Sets interval of carousel rotating
+func (c *Carousel) SetInterval (interval int) {
+	c.js += c.SetIntervalJS(interval) +";"
 }
 
 func(c *Carousel) render() string {
@@ -88,5 +99,5 @@ func(c *Carousel) render() string {
 }
 
 func (c *Carousel) renderJS() string {
-	return ""
+	return c.js
 }
