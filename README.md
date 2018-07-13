@@ -64,7 +64,7 @@ testPage.Attach(&login)
 testPage.Attach(&passwordCaption)
 testPage.Attach(&password)
 testPage.Attach(&submitButton)
-w.Write([]byte(testPage.Render()))
+result:= testPage.Render()
 ```
 
 ## Custom components
@@ -74,6 +74,10 @@ func render() string //This should return html code
 func renderJS() string //This should return js code (if any)
 func GetID() string //This should return ID obtained by beleine.getGlobalID()
 ```
+
+## Installation
+`go get github.com/kubastick/BeleineFramework`
+
 ## Performance
 Tested on Intel Core i3 3120m@2.50Ghz
 ```
@@ -81,5 +85,6 @@ Page with one label - avarage 3366 ns/render - 297 089 renders per second
 Typical login page - 10 694 ns/render -  93 510 renders per second
 Prepared typical login page - 7697 ns/render - 129 921 renders per second
 ```
+
 ## Api stability
 Nope, until final release

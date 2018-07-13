@@ -415,3 +415,10 @@ func TestNav(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestBreakline(t *testing.T) {
+	breakLine := NewBreakline()
+	if breakLine.render() != "</br>" {
+		t.Fail()
+	}
+}
