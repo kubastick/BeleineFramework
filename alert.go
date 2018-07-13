@@ -51,7 +51,7 @@ func (a *Alert) SetOnClickListener(listener string) {
 	a.js += fmt.Sprintf("%s.onclick = function(){%s}", a.id, listener)
 }
 
-func (a *Alert) render() string {
+func (a *Alert) Render() string {
 	return fmt.Sprintf(`
 	<div id="%s" class="%s">
   		<strong>%s</strong> %s
@@ -59,7 +59,7 @@ func (a *Alert) render() string {
 	`, a.id, a.getDivClassName(a.alertType), a.strongText, a.text)
 }
 
-func (a *Alert) renderJS() string {
+func (a *Alert) RenderJS() string {
 	return a.js
 }
 

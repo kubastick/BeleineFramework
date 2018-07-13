@@ -8,11 +8,11 @@ func NewBreakline() Breakline {
 	return Breakline{id: GetGlobalID()}
 }
 
-func (b *Breakline) render() string {
+func (b *Breakline) Render() string {
 	return "</br>"
 }
 
-func (b *Breakline) renderJS() string {
+func (b *Breakline) RenderJS() string {
 	return ""
 }
 

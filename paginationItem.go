@@ -31,7 +31,7 @@ func (p *PaginationItem) SetOnClickListener(listener string) {
 	p.js += fmt.Sprintf("%s.onclick = function(){%s}", p.id, listener)
 }
 
-func (p *PaginationItem) render() string {
+func (p *PaginationItem) Render() string {
 	if p.enabled {
 		return fmt.Sprintf(`<li id="%s" class="page-item"><a class="page-link" href="#">%s</a></li>`, p.id, p.text)
 	} else {
@@ -39,6 +39,6 @@ func (p *PaginationItem) render() string {
 	}
 }
 
-func (p *PaginationItem) renderJS() string {
+func (p *PaginationItem) RenderJS() string {
 	return p.js
 }

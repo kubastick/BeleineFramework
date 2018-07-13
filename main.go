@@ -21,15 +21,15 @@ import (
 //variables
 var globalID int
 
-type component interface {
-	render() string
-	renderJS() string
+type Component interface {
+	Render() string
+	RenderJS() string
 	GetID() string
 }
 
 //Root Page struct
 type Page struct {
-	components []component
+	components []Component
 	title      string
 	js string
 }
@@ -55,14 +55,14 @@ func (p *Page) Render() string {
 
 	//HTML
 	for _, a := range p.components {
-		result += a.render()
+		result += a.Render()
 	}
 
 	//Javascript
 	result += `<script>`
 	for _, a := range p.components {
-		if a.renderJS() != "" {
-			result += a.renderJS() + ";"
+		if a.RenderJS() != "" {
+			result += a.RenderJS() + ";"
 		}
 	}
 	result += p.js
@@ -74,7 +74,7 @@ func (p *Page) Render() string {
 }
 
 //Adds component to page
-func (p *Page) Attach(component component) {
+func (p *Page) Attach(component interface{Component}) {
 	p.components = append(p.components, component)
 }
 

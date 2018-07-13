@@ -76,7 +76,7 @@ func (n *Nav) SetExpand(value bool) {
 	n.expand = value
 }
 
-func (n *Nav) render() string {
+func (n *Nav) Render() string {
 	result := fmt.Sprintf(`<ul class="nav%s%s%s">`, n.getStyleTag(), n.getJustifyTag(), n.getExpandTag())
 	var classAddon string
 	for _, i := range n.items {
@@ -99,7 +99,7 @@ func (n *Nav) render() string {
 	return result
 }
 
-func (n *Nav) renderJS() string {
+func (n *Nav) RenderJS() string {
 	return ""
 	//TODO:Implementation
 }

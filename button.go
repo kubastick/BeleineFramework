@@ -121,7 +121,7 @@ func (b *Button) SetOnClickListener(listener string) {
 	b.js += fmt.Sprintf("%s.onclick = function(){%s}", b.id, listener)
 }
 
-func (b *Button) render() string {
+func (b *Button) Render() string {
 	if b.state {
 		if b.dropdown {
 			dItems := ""
@@ -157,7 +157,7 @@ func (b *Button) render() string {
 	}
 }
 
-func (b *Button) renderJS() string {
+func (b *Button) RenderJS() string {
 	return b.js
 }
 

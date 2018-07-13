@@ -83,7 +83,7 @@ func (b *Badge) SetOnClickListener(listener string) {
 	b.js += fmt.Sprintf("%s.onclick = function(){%s}", b.id, listener)
 }
 
-func (b *Badge) render() string {
+func (b *Badge) Render() string {
 	pill := ""
 	if b.pill {
 		pill = "badge-pill "
@@ -91,7 +91,7 @@ func (b *Badge) render() string {
 	return fmt.Sprintf(`<span id="%s" class="badge %s">%s</span>`, b.id, pill+b.getStyleClass(), b.text)
 }
 
-func (b *Badge) renderJS() string {
+func (b *Badge) RenderJS() string {
 	return b.js
 }
 

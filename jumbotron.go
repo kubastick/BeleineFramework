@@ -4,7 +4,7 @@ import "fmt"
 
 type Jumbotron struct {
 	id         string
-	components []component
+	components []Component
 	fluid      bool
 	js         string
 }
@@ -15,11 +15,11 @@ func NewJumbotron() Jumbotron {
 }
 
 //Attach component to Jumbotron
-func (j *Jumbotron) Attach(c component) {
+func (j *Jumbotron) Attach(c Component) {
 	j.components = append(j.components, c)
 }
 
-func (j *Jumbotron) render() string {
+func (j *Jumbotron) Render() string {
 	fluidTag := ""
 	if j.fluid {
 		fluidTag = " jumbotron-fluid"
@@ -27,13 +27,13 @@ func (j *Jumbotron) render() string {
 	result := fmt.Sprintf(`<div id="%s" class="jumbotron%s">`, j.id, fluidTag)
 
 	for _, c := range j.components {
-		result += c.render()
+		result += c.Render()
 	}
 	result += `</div>`
 	return result
 }
 
-func (j *Jumbotron) renderJS() string {
+func (j *Jumbotron) RenderJS() string {
 	return j.js
 }
 

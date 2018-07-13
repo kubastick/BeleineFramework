@@ -46,7 +46,7 @@ func (l *Label) SetSize(size int) error {
 	return nil
 }
 
-func (l *Label) render() string {
+func (l *Label) Render() string {
 	if l.size == 0 {
 		return fmt.Sprintf(`<p id="%s">%s</p>`, l.id, l.text)
 	} else {
@@ -54,7 +54,7 @@ func (l *Label) render() string {
 	}
 }
 
-func (l *Label) renderJS() string {
+func (l *Label) RenderJS() string {
 	return l.js
 }
 

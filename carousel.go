@@ -67,7 +67,7 @@ func (c *Carousel) SetOnClickListener(listener string) {
 	c.js += fmt.Sprintf("%s.onclick = function(){%s};", c.id, listener)
 }
 
-func (c *Carousel) render() string {
+func (c *Carousel) Render() string {
 	result := fmt.Sprintf(`
 <div id="%s" class="carousel slide" data-ride="carousel">
 <div class="carousel-inner">
@@ -113,6 +113,6 @@ func (c *Carousel) render() string {
 	return result
 }
 
-func (c *Carousel) renderJS() string {
+func (c *Carousel) RenderJS() string {
 	return c.js
 }

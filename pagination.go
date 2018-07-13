@@ -11,7 +11,7 @@ type Pagination struct {
 	id         string
 	size       string
 	alignment  string
-	components []component
+	components []Component
 	js         string
 }
 
@@ -53,15 +53,15 @@ func (p *Pagination) SetSize(size int) error {
 	return nil
 }
 
-func (p *Pagination) AddItem(c component) {
+func (p *Pagination) AddItem(c Component) {
 	p.components = append(p.components, c)
 }
 
-func (p *Pagination) render() string {
+func (p *Pagination) Render() string {
 	items := ""
 
 	for _, v := range p.components {
-		items += v.render()
+		items += v.Render()
 	}
 
 	return fmt.Sprintf(`
@@ -73,6 +73,6 @@ func (p *Pagination) render() string {
 `, p.id, p.size, p.alignment, items)
 }
 
-func (p *Pagination) renderJS() string {
+func (p *Pagination) RenderJS() string {
 	return p.js
 }

@@ -100,7 +100,7 @@ func (p *Progress) SetOnClickListener(listener string) {
 	p.js += fmt.Sprintf("%s.onclick = function(){%s}", p.id, listener)
 }
 
-func (p *Progress) render() string {
+func (p *Progress) Render() string {
 	return fmt.Sprintf(`
 	<div id="%s" class="progress">
   		<div class="progress-bar %s %s %s" role="progressbar" style="width: %d%s" aria-valuenow="%d" aria-valuemin="%d" aria-valuemax="%d">%s</div>
@@ -108,6 +108,6 @@ func (p *Progress) render() string {
 	`, p.id, p.striped, p.progressType, p.animated, p.percent, "%", p.percent, p.min, p.max, p.showLabels)
 }
 
-func (p *Progress) renderJS() string {
+func (p *Progress) RenderJS() string {
 	return p.js
 }
