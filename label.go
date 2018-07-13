@@ -15,7 +15,7 @@ type Label struct {
 }
 
 //Pseudo-object creation function
-func MakeLabel() Label {
+func NewLabel() Label {
 	return Label{id:getGlobalID()}
 }
 

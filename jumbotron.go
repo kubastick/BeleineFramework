@@ -10,7 +10,7 @@ type Jumbotron struct {
 }
 
 //Create Jumbotron struct
-func MakeJumbotron() Jumbotron {
+func NewJumbotron() Jumbotron {
 	return Jumbotron{id:getGlobalID()}
 }
 
