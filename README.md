@@ -8,7 +8,7 @@ Code example:
 ```
 var testPage beleine.Page
 
-helloworldLabel := beleine.MakeLabel()
+helloworldLabel := beleine.NewLabel()
 helloworldLabel.SetText("Hello world")
 helloworldLabel.SetSize(1) //H1
 testPage.Attach(&helloworldLabel)
@@ -22,7 +22,7 @@ Now more powerful thing:
 ```
 var interactivePage beleine.Page
 
-clickMeLabel := beleine.MakeLabel()
+clickMeLabel := beleine.NewLabel()
 clickMeLabel.SetText("Foo")
 clickMeLabel.SetOnClickListener(clickMeLabel.SetTextJS("Bar"))
 interactivePage.Attach(&clickMeLabel)
@@ -35,24 +35,24 @@ Create working web login form!
 ```
 var testPage beleine.Page
 
-helloworldLabel := beleine.MakeLabel()
+helloworldLabel := beleine.NewLabel()
 helloworldLabel.SetText("Log-in into BeleineFramework")
 helloworldLabel.SetSize(1) //H1
 
-loginCaption := beleine.MakeLabel()
+loginCaption := beleine.NewLabel()
 loginCaption.SetText("Login")
 
 login := beleine.MakeInput()
 login.SetHint("Login")
 
-passwordCaption := beleine.MakeLabel()
+passwordCaption := beleine.NewLabel()
 passwordCaption.SetText("Password")
 
-password := beleine.MakeInput()
+password := beleine.NewInput()
 password.SetHint("*********")
 password.SetInputType("password")
 
-submitButton := beleine.MakeButton()
+submitButton := beleine.NewButton()
 submitButton.SetText("Login")
 submitButton.SetOnClickListener(
 beleine.PostRequestJS("/api/", fmt.Sprintf("{l:%s,p:%s}",login.GetTextJS(),password.GetTextJS()),submitButton.SetTextJS("Logged in!")) +
