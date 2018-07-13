@@ -128,18 +128,16 @@ func (b *Button) render() string {
 		if b.dropdown {
 			dItems := ""
 			for _,v := range b.ddItems {
-				dItems += fmt.Sprintf(`	<a id="%s" class="dropdown-item" href="#">%s</a>
-`,v.id,v.name)
+				dItems += fmt.Sprintf(`<a id="%s" class="dropdown-item" href="#">%s</a>`,v.id,v.name)
 			}
-			return fmt.Sprintf(`
-<div class="dropdown">
-  <button class="btn btn%s%s %s dropdown-toggle" type="button" id="%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    %s
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-%s</div>
+			return fmt.Sprintf(`<div class="dropdown">
+<button class="btn btn%s%s %s dropdown-toggle" type="button" id="%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+%s
+</button>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+%s
 </div>
-			`,b.outline,b.btnType,b.size,b.id,b.text,dItems)
+</div>`,b.outline,b.btnType,b.size,b.id,b.text,dItems)
 		}
 		if b.collapse {
 			return fmt.Sprintf(`
