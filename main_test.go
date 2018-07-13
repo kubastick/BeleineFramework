@@ -331,3 +331,26 @@ func BenchmarkPageLoginPrepared(b *testing.B) {
 		testPage.Render()
 	}
 }
+
+func TestNaw(t *testing.T) {
+	nav := NewNav()
+	nav.SetStyle(1)
+	nav.SetExpand(true)
+
+	nav.AddItem(&NavItem{Title:"yo",Link:"#"})
+	if nav.render() != `<ul class="nav nav-tabs nav-fill">
+<li class="nav-item">
+	<a class="nav-link" href="#">yo</a>
+</li>
+</ul>` {t.Fail()}
+	nav.SetExpand(false)
+	nav.SetStyle(0)
+	if nav.render() != `<ul class="nav">
+<li class="nav-item">
+	<a class="nav-link" href="#">yo</a>
+</li>
+</ul>` {t.Fail()}
+
+	err := nav.SetStyle(3)
+	if err == nil {t.Fail()}
+}
