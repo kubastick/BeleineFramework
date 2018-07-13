@@ -15,7 +15,7 @@ func NewJumbotron() Jumbotron {
 }
 
 //Attach component to Jumbotron
-func (j *Jumbotron) Attach(c Component) {
+func (j *Jumbotron) Attach(c interface{Component}) {
 	j.components = append(j.components, c)
 }
 

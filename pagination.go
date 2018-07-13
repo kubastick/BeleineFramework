@@ -53,7 +53,7 @@ func (p *Pagination) SetSize(size int) error {
 	return nil
 }
 
-func (p *Pagination) AddItem(c Component) {
+func (p *Pagination) AddItem(c interface{Component}) {
 	p.components = append(p.components, c)
 }
 
