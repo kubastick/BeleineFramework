@@ -27,7 +27,7 @@ type Badge struct {
 }
 
 //Creates new Badge struct
-func MakeBadge() Badge {
+func NewBadge() Badge {
 	return Badge{id:getGlobalID()}
 }
 

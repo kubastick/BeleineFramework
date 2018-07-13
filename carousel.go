@@ -23,7 +23,7 @@ type CarouselItem struct {
 }
 
 //Create Carousel struct
-func MakeCarousel() Carousel {
+func NewCarousel() Carousel {
 	return Carousel{id:getGlobalID()}
 }
 

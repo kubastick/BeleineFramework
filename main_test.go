@@ -6,7 +6,7 @@ import (
 )
 
 func TestCollapse(t *testing.T) {
-	collapse := MakeButton()
+	collapse := NewButton()
 	collapse.SetText("Lorem")
 	collapse.SetSize(0)
 	collapse.CollapseEnabled(true)
@@ -26,7 +26,7 @@ func TestCollapse(t *testing.T) {
 }
 
 func TestDropdown(t *testing.T) {
-	dropdown := MakeButton()
+	dropdown := NewButton()
 	dropdown.SetText("Animals")
 	dropdown.SetSize(2)
 	dropdown.SetButtonType(3)
@@ -60,7 +60,7 @@ Animals
 }
 
 func TestBadge(t *testing.T) {
-	badge := MakeBadge()
+	badge := NewBadge()
 
 	badge.SetText("xCairuuu")
 	if badge.render() != fmt.Sprintf(`<span id="%s" class="badge badge-primary">xCairuuu</span>`,badge.GetID()) {t.Fail()}
@@ -70,7 +70,7 @@ func TestBadge(t *testing.T) {
 	if badge.render() != fmt.Sprintf(`<span id="%s" class="badge badge-pill badge-success">Bye world</span>`,badge.GetID()) {t.Fail()}
 }
 func TestProgress(t *testing.T) {
-	progress :=MakeProgress()
+	progress :=NewProgress()
 
 	progress.SetMinMax(0,100)
 	if progress.render() != fmt.Sprintf(`
@@ -116,7 +116,7 @@ func TestProgress(t *testing.T) {
 }
 
 func TestInput(t *testing.T) {
-	input := MakeInput()
+	input := NewInput()
 	input.SetHint("Username")
 	if input.render() != fmt.Sprintf(`<input id="%s" type="text" class="form-control " placeholder="Username">`,input.GetID()) {t.Fail()}
 	input.SetSize(2)
@@ -126,7 +126,7 @@ func TestInput(t *testing.T) {
 }
 
 func TestButton(t *testing.T) {
-	button := MakeButton()
+	button := NewButton()
 	button.SetText("Click")
 	if button.render() != fmt.Sprintf(`<button id="%s" type="button" class="btn btn-primary ">Click</button>`,button.GetID()) {t.Fail()}
 	button.SetSize(0)
@@ -140,7 +140,7 @@ func TestButton(t *testing.T) {
 }
 
 func TestLabel(t *testing.T) {
-	label := MakeLabel()
+	label := NewLabel()
 	label.SetText("Hello world")
 	if label.render() != fmt.Sprintf(`<p id="%s">Hello world</p>`,label.GetID()) {t.Fail()}
 	label.SetSize(1)
@@ -150,7 +150,7 @@ func TestLabel(t *testing.T) {
 }
 
 func TestAlert(t *testing.T) {
-	alert := MakeAlert()
+	alert := NewAlert()
 	alert.SetAlertType(0)
 	alert.SetStrongText("Hello world")
 	alert.SetText("This is alert description")
@@ -173,13 +173,13 @@ func TestAlert(t *testing.T) {
 func TestCore (t *testing.T) {
 	var testPage Page
 
-	helloworldLabel := MakeLabel()
+	helloworldLabel := NewLabel()
 	helloworldLabel.SetText("Hello world")
 	helloworldLabel.SetSize(1) //H1
 	helloworldLabel.SetOnClickListener(helloworldLabel.SetTextJS("Hi!"))
 	testPage.Attach(&helloworldLabel)
 
-	button := MakeButton()
+	button := NewButton()
 	button.SetText("Click me")
 	button.SetOnClickListener(helloworldLabel.SetTextJS("You clicked button"))
 
@@ -191,11 +191,11 @@ func TestCore (t *testing.T) {
 }
 
 func TestJumbotron(t *testing.T){
-	jumbotron := MakeJumbotron()
+	jumbotron := NewJumbotron()
 
 	if jumbotron.render() != fmt.Sprintf(`<div id="%s" class="jumbotron"></div>`,jumbotron.GetID()) {t.Fail()}
 
-	label := MakeLabel()
+	label := NewLabel()
 	label.SetText("hello")
 	jumbotron.Attach(&label)
 	jumbotron.SetFluid(true)
@@ -204,7 +204,7 @@ func TestJumbotron(t *testing.T){
 }
 
 func TestCarousel(t *testing.T){
-	carousel := MakeCarousel()
+	carousel := NewCarousel()
 	i := make([]CarouselItem,3)
 	i[0] = CarouselItem{Title:"hello",ImageSource:"yo1.png",AltText:"Lol"}
 	i[1] = CarouselItem{Title:"world",ImageSource:"yo2.png"}
@@ -232,7 +232,7 @@ func BenchmarkPageHelloWorld(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		var testPage Page
 
-		helloworldLabel := MakeLabel()
+		helloworldLabel := NewLabel()
 		helloworldLabel.SetText("Hello world")
 		helloworldLabel.SetSize(1) //H1
 		testPage.Attach(&helloworldLabel)
@@ -245,21 +245,21 @@ func BenchmarkPageLogin(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		var testPage Page
 
-		helloworldLabel := MakeLabel()
+		helloworldLabel := NewLabel()
 		helloworldLabel.SetText("Log-in into BeleineFramework")
 		helloworldLabel.SetSize(1) //H1
 
-		loginCaption := MakeLabel()
+		loginCaption := NewLabel()
 		loginCaption.SetText("Login")
 
-		login := MakeInput()
+		login := NewInput()
 		login.SetHint("Login")
 
-		password := MakeInput()
+		password := NewInput()
 		password.SetHint("*********")
 		password.SetInputType("password")
 
-		submitButton := MakeButton()
+		submitButton := NewButton()
 		submitButton.SetText("Login")
 		submitButton.SetOnClickListener(submitButton.SetTextJS("Loggining in..."))
 
@@ -275,21 +275,21 @@ func BenchmarkPageLogin(b *testing.B) {
 func BenchmarkPageLoginPrepared(b *testing.B) {
 	var testPage Page
 
-	helloworldLabel := MakeLabel()
+	helloworldLabel := NewLabel()
 	helloworldLabel.SetText("Log-in into BeleineFramework")
 	helloworldLabel.SetSize(1) //H1
 
-	loginCaption := MakeLabel()
+	loginCaption := NewLabel()
 	loginCaption.SetText("Login")
 
-	login := MakeInput()
+	login := NewInput()
 	login.SetHint("Login")
 
-	password := MakeInput()
+	password := NewInput()
 	password.SetHint("*********")
 	password.SetInputType("password")
 
-	submitButton := MakeButton()
+	submitButton := NewButton()
 	submitButton.SetText("Login")
 	submitButton.SetOnClickListener(
 		PostRequestJS("127.0.0.1/api", fmt.Sprintf("{l:%s,p:%s",login.GetTextJS(),password.GetTextJS()),"") +

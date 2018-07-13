@@ -29,7 +29,7 @@ type Progress struct {
 }
 
 //Creates new Progress struct
-func MakeProgress() Progress {
+func NewProgress() Progress {
 	return Progress{id:getGlobalID()}
 }
 

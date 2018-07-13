@@ -27,7 +27,7 @@ type Alert struct {
 	//TODO closable bool
 }
 
-func MakeAlert() Alert {
+func NewAlert() Alert {
 	return Alert{id:getGlobalID()}
 }
 

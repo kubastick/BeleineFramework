@@ -19,7 +19,7 @@ type Input struct {
 
 
 //Create new Input struct
-func MakeInput() Input {
+func NewInput() Input {
 	return Input{id:getGlobalID(), inputType:"text"}
 }
 

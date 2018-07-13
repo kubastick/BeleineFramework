@@ -37,7 +37,7 @@ type Button struct {
 
 
 //Creates new Button struct
-func MakeButton() Button {
+func NewButton() Button {
 	return Button{id:getGlobalID(),btnType:"-primary",state:true}
 }
 
