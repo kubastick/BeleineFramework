@@ -31,6 +31,7 @@ type component interface {
 type Page struct {
 	components []component
 	title      string
+	js string
 }
 
 //Return complete page as string
@@ -64,6 +65,7 @@ func (p *Page) Render() string {
 			result += a.renderJS() + ";"
 		}
 	}
+	result += p.js
 	result += `</script>`
 
 	//Footer
@@ -79,6 +81,11 @@ func (p *Page) Attach(component component) {
 //Sets "<title>" attribute of page
 func (p *Page) SetTitle(title string) {
 	p.title = title
+}
+
+//Attach Javascript code
+func (p *Page) AttachJSCode(code string) {
+	p.js += code
 }
 
 //Get unique component ID
