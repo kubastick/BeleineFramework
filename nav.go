@@ -136,3 +136,7 @@ func (n *Nav) getJustifyTag() string {
 	}
 	panic("invalid justify value")
 }
+
+func (n *Nav) GetID() string {
+	return n.id
+}

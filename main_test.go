@@ -307,6 +307,7 @@ func TestComponentInterface(t *testing.T) {
 	page.Attach(&Input{})
 	page.Attach(&Jumbotron{})
 	page.Attach(&Input{})
+	page.Attach(&Nav{})
 }
 
 func BenchmarkPageHelloWorld(b *testing.B) {
