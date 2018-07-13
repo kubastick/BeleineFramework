@@ -36,25 +36,30 @@ type Button struct {
 
 
 
-//Pseudo-object creation function
+//Creates new Button struct
 func MakeButton() Button {
 	return Button{id:getGlobalID(),btnType:"-primary",state:true}
 }
 
-
+//Returns the button's id
 func (b *Button) GetID() string {
 	return b.id
 }
 
+//Sets text of the button
 func (b *Button) SetText(text string) {
 	b.text = text
 }
 
+//Sets text of the button via JS
 func (b *Button) SetTextJS(text string) string {
 	return fmt.Sprintf(`%s.innerHTML="%s"`,b.id,text)
 }
 
-///Size in 0-2 number, 1 - default
+/*
+	Sets size of the button
+	Size in 0-2 number, 1 - default
+ */
 func (b *Button) SetSize(size int) error {
 	switch size {
 	case 0:
@@ -69,6 +74,10 @@ func (b *Button) SetSize(size int) error {
 	return nil
 }
 
+/*
+	Sets type of the button
+	Size in 0-8 number, 0 - default (primary)
+ */
 func (b *Button) SetButtonType(btnType int) error {
 	switch btnType {
 	case 0:
@@ -95,6 +104,7 @@ func (b *Button) SetButtonType(btnType int) error {
 	return nil
 }
 
+//Sets outline (default false)
 func (b *Button) SetOutline(outline bool) {
 	if outline {
 		b.outline = "-outline"
@@ -103,10 +113,12 @@ func (b *Button) SetOutline(outline bool) {
 	}
 }
 
+//Sets state of the button (default enabled (true))
 func (b *Button) SetState(state bool) {
 		b.state = state
 }
 
+//Sets JS code function, to be executed after click
 func (b *Button) SetOnClickListener(listener string)  {
 	b.js += fmt.Sprintf("%s.onclick = function(){%s}",b.id,listener)
 }

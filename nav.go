@@ -1,5 +1,7 @@
-package main
 
-func main() {
+package beleine
+/* - commented for now ~yknomeh
+func main() {`
 	$END$
 }
+*/
