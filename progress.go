@@ -28,20 +28,23 @@ type Progress struct {
 	js string
 }
 
-//Pseudo-object creation function
+//Creates new Progress struct
 func MakeProgress() Progress {
 	return Progress{id:getGlobalID()}
 }
 
+//Returns ID of the progress
 func (p *Progress) GetID() string {
 	return p.id
 }
 
+//Sets min and max value of the progress bar
 func (p *Progress) SetMinMax(min, max int) {
 	p.min = min
 	p.max = max
 }
 
+//Sets label (default false)
 func (p *Progress) SetLabels(showLabels bool) {
 	if showLabels {
 		p.showLabels = fmt.Sprintf("%d%s",p.percent, "%")
@@ -50,10 +53,12 @@ func (p *Progress) SetLabels(showLabels bool) {
 	}
 }
 
+//Sets percent of now value of progress
 func (p *Progress) SetPercent(percent int) {
 	p.percent = percent
 }
 
+//Sets progress bar type (default 0)
 func (p *Progress) SetProgressType(progressType int) error{
 	switch progressType {
 	case 0:
@@ -72,6 +77,7 @@ func (p *Progress) SetProgressType(progressType int) error{
 	return nil
 }
 
+//Sets striped progress bar (default false)
 func (p *Progress) SetStriped(striped bool) {
 	if striped {
 		p.striped = "progress-bar-striped"
@@ -80,6 +86,7 @@ func (p *Progress) SetStriped(striped bool) {
 	}
 }
 
+//Sets animated progress bar (default false)
 func (p *Progress) SetAnimation(animated bool) {
 	if animated {
 		p.animated = "progress-bar-animated"
@@ -88,6 +95,7 @@ func (p *Progress) SetAnimation(animated bool) {
 	}
 }
 
+//Sets JS code function, to be executed after click
 func (p *Progress) SetOnClickListener(listener string)  {
 	p.js += fmt.Sprintf("%s.onclick = function(){%s}",p.id,listener)
 }
