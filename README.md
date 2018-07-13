@@ -81,3 +81,5 @@ Page with one label - avarage 3366 ns/render - 297 089 renders per second
 Typical login page - 10 694 ns/render -  93 510 renders per second
 Prepared typical login page - 7697 ns/render - 129 921 renders per second
 ```
+## Api stability
+Nope, until final release
