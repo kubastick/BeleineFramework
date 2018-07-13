@@ -3,8 +3,8 @@ package beleine
 //BADGE
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 )
 
 /*
@@ -17,18 +17,18 @@ Badge types:
 	5-Info
 	6-Light
 	7-Dark
- */
+*/
 type Badge struct {
-	id string
-	text string
+	id    string
+	text  string
 	style int
-	pill bool
-	js string
+	pill  bool
+	js    string
 }
 
 //Creates new Badge struct
 func NewBadge() Badge {
-	return Badge{id:getGlobalID()}
+	return Badge{id: getGlobalID()}
 }
 
 //Returns ID of the Badge
@@ -59,32 +59,36 @@ func (b *Badge) SetPill(pill bool) {
 //
 //Returns error if value is not in 0-7 range
 func (b *Badge) SetStyle(styleNumber int) error {
-	if styleNumber>7 { if styleNumber<0 {
-		return errors.New("value must be in 0-7 range")
-	}}
+	if styleNumber > 7 {
+		if styleNumber < 0 {
+			return errors.New("value must be in 0-7 range")
+		}
+	}
 	b.style = styleNumber
 	return nil
 }
 
 //Returns JS code as string, that sets Badge text
 func (b *Badge) SetTextJS(text string) string {
-	return fmt.Sprintf(`%s.innerHTML="%s"`,b.id,text)
+	return fmt.Sprintf(`%s.innerHTML="%s"`, b.id, text)
 }
 
 //Returns JS code as string, that returns Badge text
 func (b *Badge) GetTextJS(text string) string {
-	return fmt.Sprintf(`%s.innerHTML`,b.id)
+	return fmt.Sprintf(`%s.innerHTML`, b.id)
 }
 
 //Sets JS code function, to be executed after click
 func (b *Badge) SetOnClickListener(listener string) {
-	b.js += fmt.Sprintf("%s.onclick = function(){%s}",b.id,listener)
+	b.js += fmt.Sprintf("%s.onclick = function(){%s}", b.id, listener)
 }
 
 func (b *Badge) render() string {
 	pill := ""
-	if b.pill {pill="badge-pill "}
-	return fmt.Sprintf(`<span id="%s" class="badge %s">%s</span>`,b.id,pill + b.getStyleClass(),b.text)
+	if b.pill {
+		pill = "badge-pill "
+	}
+	return fmt.Sprintf(`<span id="%s" class="badge %s">%s</span>`, b.id, pill+b.getStyleClass(), b.text)
 }
 
 func (b *Badge) renderJS() string {
@@ -112,4 +116,3 @@ func (b *Badge) getStyleClass() string {
 	}
 	panic("invalid style class number")
 }
-

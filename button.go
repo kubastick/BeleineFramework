@@ -3,8 +3,8 @@ package beleine
 //BUTTON
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 )
 
 /*
@@ -21,24 +21,22 @@ Button types:
 */
 
 type Button struct {
-	id string
-	text string
-	size string
-	btnType string
-	outline string
-	state bool
+	id       string
+	text     string
+	size     string
+	btnType  string
+	outline  string
+	state    bool
 	dropdown bool
-	ddItems map[string]Dropdown
+	ddItems  map[string]Dropdown
 	collapse bool
-	cItem Collapse
-	js string
+	cItem    Collapse
+	js       string
 }
-
-
 
 //Creates new Button struct
 func NewButton() Button {
-	return Button{id:getGlobalID(),btnType:"-primary",state:true}
+	return Button{id: getGlobalID(), btnType: "-primary", state: true}
 }
 
 //Returns the button's id
@@ -53,13 +51,13 @@ func (b *Button) SetText(text string) {
 
 //Sets text of the button via JS
 func (b *Button) SetTextJS(text string) string {
-	return fmt.Sprintf(`%s.innerHTML="%s"`,b.id,text)
+	return fmt.Sprintf(`%s.innerHTML="%s"`, b.id, text)
 }
 
 /*
 	Sets size of the button
 	Size in 0-2 number, 1 - default
- */
+*/
 func (b *Button) SetSize(size int) error {
 	switch size {
 	case 0:
@@ -77,7 +75,7 @@ func (b *Button) SetSize(size int) error {
 /*
 	Sets type of the button
 	Size in 0-8 number, 0 - default (primary)
- */
+*/
 func (b *Button) SetButtonType(btnType int) error {
 	switch btnType {
 	case 0:
@@ -115,20 +113,20 @@ func (b *Button) SetOutline(outline bool) {
 
 //Sets state of the button (default enabled (true))
 func (b *Button) SetState(state bool) {
-		b.state = state
+	b.state = state
 }
 
 //Sets JS code function, to be executed after click
-func (b *Button) SetOnClickListener(listener string)  {
-	b.js += fmt.Sprintf("%s.onclick = function(){%s}",b.id,listener)
+func (b *Button) SetOnClickListener(listener string) {
+	b.js += fmt.Sprintf("%s.onclick = function(){%s}", b.id, listener)
 }
 
 func (b *Button) render() string {
 	if b.state {
 		if b.dropdown {
 			dItems := ""
-			for _,v := range b.ddItems {
-				dItems += fmt.Sprintf(`<a id="%s" class="dropdown-item" href="#">%s</a>`,v.id,v.name)
+			for _, v := range b.ddItems {
+				dItems += fmt.Sprintf(`<a id="%s" class="dropdown-item" href="#">%s</a>`, v.id, v.name)
 			}
 			return fmt.Sprintf(`<div class="dropdown">
 <button class="btn btn%s%s %s dropdown-toggle" type="button" id="%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -137,7 +135,7 @@ func (b *Button) render() string {
 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 %s
 </div>
-</div>`,b.outline,b.btnType,b.size,b.id,b.text,dItems)
+</div>`, b.outline, b.btnType, b.size, b.id, b.text, dItems)
 		}
 		if b.collapse {
 			return fmt.Sprintf(`
@@ -151,7 +149,7 @@ func (b *Button) render() string {
     %s
   </div>
 </div>
-			`,b.id,b.outline,b.btnType,b.size,b.cItem.id,b.cItem.id,b.text,b.cItem.id,b.cItem.text)
+			`, b.id, b.outline, b.btnType, b.size, b.cItem.id, b.cItem.id, b.text, b.cItem.id, b.cItem.text)
 		}
 		return fmt.Sprintf(`<button id="%s" type="button" class="btn btn%s%s %s">%s</button>`, b.id, b.outline, b.btnType, b.size, b.text)
 	} else {
@@ -163,6 +161,6 @@ func (b *Button) renderJS() string {
 	return b.js
 }
 
-func (b *Button) GetTextJS() string{
+func (b *Button) GetTextJS() string {
 	return fmt.Sprintf("%s.value", b.id)
 }

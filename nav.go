@@ -7,11 +7,11 @@ import (
 
 //Create By NewNaw()
 type Nav struct {
-	id string
-	style int
+	id      string
+	style   int
 	justify int
-	expand bool
-	items []NavItem
+	expand  bool
+	items   []NavItem
 }
 
 //Types:
@@ -20,19 +20,23 @@ type Nav struct {
 //2-disabled
 type NavItem struct {
 	Title string
-	Link string
-	Type int
+	Link  string
+	Type  int
 }
 
 func NewNav() Nav {
-	return Nav{id:getGlobalID()}
+	return Nav{id: getGlobalID()}
 }
 
 //Adds Nav item
-func (n *Nav) AddItem (item *NavItem) error{
-	if item.Type < 0 {return errors.New("value outside range")}
-	if item.Type > 2 {return errors.New("value outside range")}
-	n.items = append(n.items,*item)
+func (n *Nav) AddItem(item *NavItem) error {
+	if item.Type < 0 {
+		return errors.New("value outside range")
+	}
+	if item.Type > 2 {
+		return errors.New("value outside range")
+	}
+	n.items = append(n.items, *item)
 	return nil
 }
 
@@ -41,9 +45,13 @@ func (n *Nav) AddItem (item *NavItem) error{
 //1-center horizontal
 //2-push to left
 //3-vertical
-func (n *Nav) SetJustify (justify int) error {
-	if justify < 0 {return errors.New("value outside range")}
-	if justify > 3 {return errors.New("value outside range")}
+func (n *Nav) SetJustify(justify int) error {
+	if justify < 0 {
+		return errors.New("value outside range")
+	}
+	if justify > 3 {
+		return errors.New("value outside range")
+	}
 	n.justify = justify
 	return nil
 }
@@ -52,9 +60,13 @@ func (n *Nav) SetJustify (justify int) error {
 //0-default
 //1-tabs
 //2-pills
-func (n *Nav) SetStyle (style int) error {
-	if style < 0 {return errors.New("value outside range")}
-	if style > 2 {return errors.New("value outside range")}
+func (n *Nav) SetStyle(style int) error {
+	if style < 0 {
+		return errors.New("value outside range")
+	}
+	if style > 2 {
+		return errors.New("value outside range")
+	}
 	n.style = style
 	return nil
 }
@@ -65,19 +77,25 @@ func (n *Nav) SetExpand(value bool) {
 }
 
 func (n *Nav) render() string {
-	result := fmt.Sprintf(`<ul class="nav%s%s%s">`,n.getStyleTag(),n.getJustifyTag(),n.getExpandTag())
+	result := fmt.Sprintf(`<ul class="nav%s%s%s">`, n.getStyleTag(), n.getJustifyTag(), n.getExpandTag())
 	var classAddon string
-	for _,i := range n.items {
-		if i.Type == 1 {classAddon="active"}
-		if i.Type == 2 {classAddon="disabled"}
+	for _, i := range n.items {
+		if i.Type == 1 {
+			classAddon = "active"
+		}
+		if i.Type == 2 {
+			classAddon = "disabled"
+		}
 		result += fmt.Sprintf(`
 <li class="nav-item">
 	<a class="nav-link%s" href="%s">%s</a>
 </li>
-`		,classAddon,i.Link,i.Title)
-		if i.Type != 0 {classAddon = ""}
+`, classAddon, i.Link, i.Title)
+		if i.Type != 0 {
+			classAddon = ""
+		}
 	}
-	result +=`</ul>`
+	result += `</ul>`
 	return result
 }
 
@@ -99,7 +117,9 @@ func (n *Nav) getStyleTag() string {
 }
 
 func (n *Nav) getExpandTag() string {
-	if n.expand{ return " nav-fill"}
+	if n.expand {
+		return " nav-fill"
+	}
 	return ""
 }
 

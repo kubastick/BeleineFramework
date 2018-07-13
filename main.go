@@ -9,7 +9,7 @@
     \/___/  \/____/\/____/\/____/ \/_/\/_/\/_/\/____/ \/_/  \/_/ \/__/\/_/\/_/\/_/\/_/\/____/ \/__//__/   \/___/  \/_/   \/_/\/_/
 
 
- */
+*/
 
 package beleine
 
@@ -30,11 +30,11 @@ type component interface {
 //Root Page struct
 type Page struct {
 	components []component
-	title string
+	title      string
 }
 
 //Return complete page as string
-func (p *Page) Render() string{
+func (p *Page) Render() string {
 	//Header
 	result := fmt.Sprintf(`
 	<!DOCTYPE html>
@@ -50,16 +50,16 @@ func (p *Page) Render() string{
 		</head>
 	<body>
 	<div class="container">
-	`,p.title)
+	`, p.title)
 
 	//HTML
-	for _,a := range p.components {
+	for _, a := range p.components {
 		result += a.render()
 	}
 
 	//Javascript
 	result += `<script>`
-	for _,a := range p.components {
+	for _, a := range p.components {
 		if a.renderJS() != "" {
 			result += a.renderJS() + ";"
 		}
@@ -73,7 +73,7 @@ func (p *Page) Render() string{
 
 //Adds component to page
 func (p *Page) Attach(component component) {
-	p.components = append(p.components,component)
+	p.components = append(p.components, component)
 }
 
 //Sets "<title>" attribute of page

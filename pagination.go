@@ -3,21 +3,21 @@ package beleine
 //PAGINATION
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 )
 
 type Pagination struct {
-	id string
-	size string
-	alignment string
+	id         string
+	size       string
+	alignment  string
 	components []component
-	js string
+	js         string
 }
 
 //Pseudo-object creation function
 func NewPagination() Pagination {
-	return Pagination{id:getGlobalID()}
+	return Pagination{id: getGlobalID()}
 }
 
 func (p *Pagination) GetID() string {
@@ -70,7 +70,7 @@ func (p *Pagination) render() string {
 	%s
   </ul>
 </nav>
-`,p.id,p.size,p.alignment,items)
+`, p.id, p.size, p.alignment, items)
 }
 
 func (p *Pagination) renderJS() string {

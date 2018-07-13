@@ -3,28 +3,30 @@ package beleine
 import "fmt"
 
 type Jumbotron struct {
-	id string
+	id         string
 	components []component
-	fluid bool
-	js string
+	fluid      bool
+	js         string
 }
 
 //Create Jumbotron struct
 func NewJumbotron() Jumbotron {
-	return Jumbotron{id:getGlobalID()}
+	return Jumbotron{id: getGlobalID()}
 }
 
 //Attach component to Jumbotron
 func (j *Jumbotron) Attach(c component) {
-	j.components = append(j.components,c)
+	j.components = append(j.components, c)
 }
 
 func (j *Jumbotron) render() string {
 	fluidTag := ""
-	if j.fluid {fluidTag=" jumbotron-fluid"}
-	result := fmt.Sprintf(`<div id="%s" class="jumbotron%s">`,j.id,fluidTag)
+	if j.fluid {
+		fluidTag = " jumbotron-fluid"
+	}
+	result := fmt.Sprintf(`<div id="%s" class="jumbotron%s">`, j.id, fluidTag)
 
-	for _,c := range j.components {
+	for _, c := range j.components {
 		result += c.render()
 	}
 	result += `</div>`
@@ -36,7 +38,7 @@ func (j *Jumbotron) renderJS() string {
 }
 
 //Enable/disable Jumbotron fluid
-func (j *Jumbotron) SetFluid (fluid bool) {
+func (j *Jumbotron) SetFluid(fluid bool) {
 	j.fluid = fluid
 }
 
@@ -47,6 +49,5 @@ func (j *Jumbotron) GetID() string {
 
 //Sets JS code function, to be executed after click
 func (j *Jumbotron) SetOnClickListener(listener string) {
-	j.js += fmt.Sprintf("%s.onclick = function(){%s};",j.id,listener)
+	j.js += fmt.Sprintf("%s.onclick = function(){%s};", j.id, listener)
 }
-

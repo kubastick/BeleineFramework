@@ -3,24 +3,22 @@ package beleine
 //INPUT
 
 import (
-	"fmt"
 	"errors"
+	"fmt"
 )
 
-
 type Input struct {
-	id string
-	text string
-	hint string
-	size string
+	id        string
+	text      string
+	hint      string
+	size      string
 	inputType string
-	js string
+	js        string
 }
-
 
 //Create new Input struct
 func NewInput() Input {
-	return Input{id:getGlobalID(), inputType:"text"}
+	return Input{id: getGlobalID(), inputType: "text"}
 }
 
 //Returns ID of component
@@ -31,7 +29,7 @@ func (i *Input) GetID() string {
 //Return JS code as string, that sets Input text
 func (i *Input) SetTextJS(text string) string {
 	i.text = text
-	return fmt.Sprintf(`%s.value="%s"`,i.id,i.text)
+	return fmt.Sprintf(`%s.value="%s"`, i.id, i.text)
 }
 
 //Sets input hint
@@ -67,8 +65,8 @@ func (i *Input) GetTextJS() string {
 }
 
 //Sets js code, to be executed after click
-func (i *Input) SetOnClickListener(listener string)  {
-	i.js += fmt.Sprintf("%s.onclick = function(){%s}",i.id,listener)
+func (i *Input) SetOnClickListener(listener string) {
+	i.js += fmt.Sprintf("%s.onclick = function(){%s}", i.id, listener)
 }
 
 func (i *Input) render() string {
@@ -78,4 +76,3 @@ func (i *Input) render() string {
 func (i *Input) renderJS() string {
 	return i.js
 }
-

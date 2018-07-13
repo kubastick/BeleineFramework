@@ -5,14 +5,14 @@ import "fmt"
 //PAGINATION ITEM
 
 type PaginationItem struct {
-	id string
-	text string
+	id      string
+	text    string
 	enabled bool
-	js string
+	js      string
 }
 
 func NewPaginationItem() PaginationItem {
-	return PaginationItem{id:getGlobalID(),enabled:true}
+	return PaginationItem{id: getGlobalID(), enabled: true}
 }
 
 func (p *PaginationItem) SetText(text string) {
@@ -27,15 +27,15 @@ func (p *PaginationItem) SetEnabled(enabled bool) {
 	p.enabled = enabled
 }
 
-func (p *PaginationItem) SetOnClickListener(listener string)  {
-	p.js += fmt.Sprintf("%s.onclick = function(){%s}",p.id,listener)
+func (p *PaginationItem) SetOnClickListener(listener string) {
+	p.js += fmt.Sprintf("%s.onclick = function(){%s}", p.id, listener)
 }
 
 func (p *PaginationItem) render() string {
 	if p.enabled {
-		return fmt.Sprintf(`<li id="%s" class="page-item"><a class="page-link" href="#">%s</a></li>`,p.id,p.text)
+		return fmt.Sprintf(`<li id="%s" class="page-item"><a class="page-link" href="#">%s</a></li>`, p.id, p.text)
 	} else {
-		return fmt.Sprintf(`<li id="%s" class="page-item disabled"><a class="page-link" href="#">%s</a></li>`,p.id,p.text)
+		return fmt.Sprintf(`<li id="%s" class="page-item disabled"><a class="page-link" href="#">%s</a></li>`, p.id, p.text)
 	}
 }
 

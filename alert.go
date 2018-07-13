@@ -19,16 +19,16 @@ Alert types:
 */
 
 type Alert struct {
-	id string
+	id         string
 	strongText string
-	text string
-	alertType int
-	js string
+	text       string
+	alertType  int
+	js         string
 	//TODO closable bool
 }
 
 func NewAlert() Alert {
-	return Alert{id:getGlobalID()}
+	return Alert{id: getGlobalID()}
 }
 
 func (a *Alert) GetID() string {
@@ -47,8 +47,8 @@ func (a *Alert) SetAlertType(alertType int) {
 	a.alertType = alertType
 }
 
-func (a *Alert) SetOnClickListener(listener string)  {
-	a.js += fmt.Sprintf("%s.onclick = function(){%s}",a.id,listener)
+func (a *Alert) SetOnClickListener(listener string) {
+	a.js += fmt.Sprintf("%s.onclick = function(){%s}", a.id, listener)
 }
 
 func (a *Alert) render() string {
@@ -56,7 +56,7 @@ func (a *Alert) render() string {
 	<div id="%s" class="%s">
   		<strong>%s</strong> %s
 	</div>
-	`, a.id, a.getDivClassName(a.alertType),a.strongText,a.text)
+	`, a.id, a.getDivClassName(a.alertType), a.strongText, a.text)
 }
 
 func (a *Alert) renderJS() string {
@@ -84,4 +84,3 @@ func (a *Alert) getDivClassName(num int) string {
 	}
 	panic("illegal alert type number")
 }
-
