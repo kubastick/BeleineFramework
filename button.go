@@ -36,7 +36,7 @@ type Button struct {
 
 //Creates new Button struct
 func NewButton() Button {
-	return Button{id: getGlobalID(), btnType: "-primary", state: true}
+	return Button{id: GetGlobalID(), btnType: "-primary", state: true}
 }
 
 //Returns the button's id

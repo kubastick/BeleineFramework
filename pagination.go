@@ -17,7 +17,7 @@ type Pagination struct {
 
 //Pseudo-object creation function
 func NewPagination() Pagination {
-	return Pagination{id: getGlobalID()}
+	return Pagination{id: GetGlobalID()}
 }
 
 func (p *Pagination) GetID() string {

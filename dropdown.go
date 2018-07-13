@@ -26,7 +26,7 @@ func (b *Button) AddDropdownItem(name string) error {
 	if !b.dropdown {
 		return errors.New("Before you add item to dropdown initialize dropdown")
 	}
-	b.ddItems[name] = Dropdown{id: getGlobalID(), name: name}
+	b.ddItems[name] = Dropdown{id: GetGlobalID(), name: name}
 	return nil
 }
 

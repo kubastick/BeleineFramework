@@ -89,7 +89,7 @@ func (p *Page) AttachJSCode(code string) {
 }
 
 //Get unique component ID
-func getGlobalID() string {
+func GetGlobalID() string {
 	x := globalID
 	globalID++
 	return "a" + strconv.Itoa(x)

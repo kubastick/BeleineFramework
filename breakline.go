@@ -5,7 +5,7 @@ type Breakline struct {
 }
 
 func NewBreakline() Breakline {
-	return Breakline{id: getGlobalID()}
+	return Breakline{id: GetGlobalID()}
 }
 
 func (b *Breakline) render() string {

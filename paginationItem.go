@@ -12,7 +12,7 @@ type PaginationItem struct {
 }
 
 func NewPaginationItem() PaginationItem {
-	return PaginationItem{id: getGlobalID(), enabled: true}
+	return PaginationItem{id: GetGlobalID(), enabled: true}
 }
 
 func (p *PaginationItem) SetText(text string) {

@@ -24,7 +24,7 @@ type CarouselItem struct {
 
 //Create Carousel struct
 func NewCarousel() Carousel {
-	return Carousel{id: getGlobalID()}
+	return Carousel{id: GetGlobalID()}
 }
 
 //Return ID of the carousel

@@ -28,7 +28,7 @@ type Alert struct {
 }
 
 func NewAlert() Alert {
-	return Alert{id: getGlobalID()}
+	return Alert{id: GetGlobalID()}
 }
 
 func (a *Alert) GetID() string {

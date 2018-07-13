@@ -28,7 +28,7 @@ type Badge struct {
 
 //Creates new Badge struct
 func NewBadge() Badge {
-	return Badge{id: getGlobalID()}
+	return Badge{id: GetGlobalID()}
 }
 
 //Returns ID of the Badge

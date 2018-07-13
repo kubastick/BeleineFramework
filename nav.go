@@ -25,7 +25,7 @@ type NavItem struct {
 }
 
 func NewNav() Nav {
-	return Nav{id: getGlobalID()}
+	return Nav{id: GetGlobalID()}
 }
 
 //Adds Nav item

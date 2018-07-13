@@ -16,7 +16,7 @@ type Label struct {
 
 //Pseudo-object creation function
 func NewLabel() Label {
-	return Label{id: getGlobalID()}
+	return Label{id: GetGlobalID()}
 }
 
 func (l *Label) GetID() string {

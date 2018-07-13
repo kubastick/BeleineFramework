@@ -30,7 +30,7 @@ type Progress struct {
 
 //Creates new Progress struct
 func NewProgress() Progress {
-	return Progress{id: getGlobalID()}
+	return Progress{id: GetGlobalID()}
 }
 
 //Returns ID of the progress

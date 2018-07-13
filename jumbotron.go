@@ -11,7 +11,7 @@ type Jumbotron struct {
 
 //Create Jumbotron struct
 func NewJumbotron() Jumbotron {
-	return Jumbotron{id: getGlobalID()}
+	return Jumbotron{id: GetGlobalID()}
 }
 
 //Attach component to Jumbotron

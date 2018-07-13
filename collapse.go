@@ -23,7 +23,7 @@ func (b *Button) AddCollapseText(text string) error {
 	if !b.collapse {
 		return errors.New("Before you add text to collapse initialize collapse")
 	}
-	b.cItem.id = getGlobalID()
+	b.cItem.id = GetGlobalID()
 	b.cItem.text = text
 	return nil
 }

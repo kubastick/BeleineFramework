@@ -72,7 +72,7 @@ Every component have to implement following methods:
 ```
 func render() string //This should return html code
 func renderJS() string //This should return js code (if any)
-func GetID() string //This should return ID obtained by beleine.getGlobalID()
+func GetID() string //This should return ID obtained by beleine.GetGlobalID()
 ```
 
 ## Installation
