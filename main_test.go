@@ -5,6 +5,34 @@ import (
 	"fmt"
 )
 
+func TestPagination(t *testing.T) {
+	pagination := NewPagination()
+	pItem := NewPaginationItem()
+	pItem.SetText("1")
+	pagination.AddItem(&pItem)
+	if pagination.render() != fmt.Sprintf(`
+<nav id="%s" aria-label="Page navigation example">
+  <ul class="pagination  ">
+	<li id="%s" class="page-item"><a class="page-link" href="#">1</a></li>
+  </ul>
+</nav>
+`,pagination.GetID(),pItem.GetID()) {t.Fail()}
+
+	pItem2 := NewPaginationItem()
+	pItem2.SetText("Next")
+	pItem2.SetEnabled(false)
+	pagination.AddItem(&pItem2)
+	pagination.SetSize(2)
+	pagination.SetAlignment("END")
+	if pagination.render() != fmt.Sprintf(`
+<nav id="%s" aria-label="Page navigation example">
+  <ul class="pagination pagination-lg justify-content-end">
+	<li id="%s" class="page-item"><a class="page-link" href="#">1</a></li><li id="%s" class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+`,pagination.GetID(),pItem.GetID(),pItem2.GetID()) {t.Fail()}
+}
+
 func TestCollapse(t *testing.T) {
 	collapse := NewButton()
 	collapse.SetText("Lorem")
@@ -33,7 +61,6 @@ func TestDropdown(t *testing.T) {
 	dropdown.DropdownEnabled(true)
 
 	dropdown.AddDropdownItem("Cat")
-	println("|"+dropdown.render()+"|")
 	if dropdown.render() != fmt.Sprintf(`<div class="dropdown">
 <button class="btn btn-danger btn-lg dropdown-toggle" type="button" id="%s" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 Animals
