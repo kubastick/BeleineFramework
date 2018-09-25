@@ -5,7 +5,7 @@ Tried of html,css and javascript ?
 Beleine Framework is the fastest way to build web applications in Go  
 It gives you high level api, and every component, that you will need for web development  
 Code example:
-```
+```go
 var testPage beleine.Page
 
 helloworldLabel := beleine.NewLabel()
@@ -19,7 +19,7 @@ Is this not looking easy ?
 
 Now more powerful thing:
 
-```
+```go
 var interactivePage beleine.Page
 
 clickMeLabel := beleine.NewLabel()
@@ -32,7 +32,7 @@ fmt.Println(interactivePage.Render())
 
 Looking easy?  
 Create working web login form!
-```
+```go
 var testPage beleine.Page
 
 helloworldLabel := beleine.NewLabel()
@@ -69,7 +69,7 @@ result:= testPage.Render()
 
 ## Custom components
 Every component have to implement following methods:
-```
+```go
 func Render() string //This should return html code
 func RenderJS() string //This should return js code (if any)
 func GetID() string //This should return ID obtained by beleine.GetGlobalID()
@@ -80,7 +80,7 @@ func GetID() string //This should return ID obtained by beleine.GetGlobalID()
 
 ## Performance
 Tested on Intel Core i3 3120m@2.50Ghz
-```
+```go
 Page with one label - avarage 3366 ns/render - 297 089 renders per second
 Typical login page - 10 694 ns/render -  93 510 renders per second
 Prepared typical login page - 7697 ns/render - 129 921 renders per second
